@@ -1,0 +1,20 @@
+{
+  "name": "app04",
+  "version": "1.0.0",
+  "description": "Board Games app",
+  "main": "app04.js",
+  "scripts": {
+    "start": "node app04.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "board",
+    "game",
+    "games"
+  ],
+  "author": "Saurav Majumdar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
