@@ -1,0 +1,21 @@
+{
+  "name": "app01",
+  "version": "1.0.0",
+  "description": "My first Express app",
+  "main": "app01.js",
+  "scripts": {
+    "start": "node app01.js", 
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express"
+  ],
+  "author": "Majumdar, Saurav",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "mocha": "^8.4.0"
+  }
+}
