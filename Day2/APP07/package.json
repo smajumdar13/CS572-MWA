@@ -1,10 +1,10 @@
 {
-  "name": "app05",
+  "name": "app07",
   "version": "1.0.0",
   "description": "Board Games app second",
-  "main": "app05.js",
+  "main": "app07.js",
   "scripts": {
-    "start": "node app05.js",
+    "start": "node app07.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

@@ -1,16 +1,16 @@
 {
-  "name": "app05",
+  "name": "assn2",
   "version": "1.0.0",
-  "description": "Board Games app second",
-  "main": "app05.js",
+  "description": "Assignment 2 solution 2",
+  "main": "app.js",
   "scripts": {
-    "start": "node app05.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "board",
-    "game",
-    "games"
+    "assignment",
+    "games",
+    "application"
   ],
   "author": "Saurav Majumdar",
   "license": "ISC",
