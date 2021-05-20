@@ -1,0 +1,23 @@
+{
+  "name": "assn3",
+  "version": "1.0.0",
+  "description": "Assignment 3 on MongoDB",
+  "main": "app.js",
+  "scripts": {
+    "start": "app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mongodb",
+    "mongo",
+    "assignment",
+    "3"
+  ],
+  "author": "Saurav Majumdar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongo": "^0.1.0",
+    "mongodb": "^3.6.7"
+  }
+}

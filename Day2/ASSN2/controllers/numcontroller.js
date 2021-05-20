@@ -5,7 +5,7 @@ module.exports.sum = function(req, res){
 	console.log(req.query);
 	var num1 = 0;
 	var num2 = 0;
-    console.log("Sum of numbers " + num1+" " + num2 + ": ");
+    
 	if(req.query && req.query.num1){
 		num1 = parseInt(req.query.num1);
 	}
@@ -13,5 +13,6 @@ module.exports.sum = function(req, res){
 		num2 = parseInt(req.query.num2);
 	}
 	const sumTotal = num1 + num2;
+	console.log("Sum of numbers " + num1+" + " + num2 + ": " + sumTotal);
 	res.status(200).json("Sum of numbers: " + sumTotal);
 };
