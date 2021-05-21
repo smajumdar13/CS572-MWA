@@ -1,10 +1,10 @@
 {
-  "name": "app01",
+  "name": "app05",
   "version": "1.0.0",
   "description": "My first app with Mongoose",
-  "main": "app01.js",
+  "main": "app05.js",
   "scripts": {
-    "start": "node app01.js",
+    "start": "node app05.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

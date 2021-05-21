@@ -1,0 +1,3 @@
+MangaBase:
+
+An application with a database of Japanese Comics.

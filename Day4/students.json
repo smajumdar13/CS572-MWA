@@ -1,0 +1,46 @@
+[{
+  "_id": {
+    "$oid": "60a6e3524ada9e31c0cee364"
+  },
+  "name": "Jack",
+  "gpa": "3.0",
+  "address": {
+    "city": "Fairfield",
+    "street": "3rd St",
+    "state": "Iowa",
+    "zip": "52555",
+    "_id": {
+      "$oid": "60a717936a158dca39b6b1ef"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "60a6e3524ada9e31c0cee365"
+  },
+  "name": "Jim",
+  "gpa": "2.8",
+  "address": {
+    "city": "Ottumwa",
+    "street": "Downtown St",
+    "state": "Iowa",
+    "zip": "52533",
+    "_id": {
+      "$oid": "60a717936a158dca39b6b1ef"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "60a6e3524ada9e31c0cee366"
+  },
+  "name": "Jill",
+  "gpa": "3.3",
+  "address": {
+    "city": "Des Moines",
+    "street": "North Pavilion",
+    "state": "Iowa",
+    "zip": "52237",
+    "_id": {
+      "$oid": "60a717936a158dca39b6b1ef"
+    }
+  }
+}]

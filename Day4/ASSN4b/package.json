@@ -1,15 +1,18 @@
 {
-  "name": "app01",
+  "name": "assn4b",
   "version": "1.0.0",
   "description": "My first app with Mongoose",
-  "main": "app01.js",
+  "main": "assn4b.js",
   "scripts": {
-    "start": "node app01.js",
+    "start": "node assn4b.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "mongoose",
-    "day4"
+    "day4",
+    "nested lists",
+    "findOne",
+    "findAll"
   ],
   "author": "Saurav Majumdar",
   "license": "ISC",
