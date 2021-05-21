@@ -17,7 +17,7 @@ module.exports.addressGetOne = function (req, res) {
   const studentId = req.params.studentId;
   const addressId = req.params.addressId;
   Student.findById(studentId).exec(function (err, student) {
-    const address = student.address.id(req.params.addressId);
+    const address = student.address.id(addressId);
     console.log(
       "GET address with " +
         addressId +
