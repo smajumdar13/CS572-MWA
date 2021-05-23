@@ -1,18 +1,18 @@
 {
-  "name": "app05",
+  "name": "assn5d",
   "version": "1.0.0",
   "description": "My first app with Mongoose",
-  "main": "app05.js",
+  "main": "assn5d.js",
   "scripts": {
-    "start": "node app05.js",
+    "start": "node assn5d.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "mongoose",
-    "day5",
-    "golden rules",
-    "hardening",
-    "api design"
+    "day4",
+    "nested lists",
+    "findOne",
+    "findAll"
   ],
   "author": "Saurav Majumdar",
   "license": "ISC",
