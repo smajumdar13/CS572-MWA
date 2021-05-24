@@ -160,7 +160,7 @@ module.exports.reviewsDelete = function (req, res) {
             res.status(400).send(removeerr.message);
           }
         });
-        game.markModified("reviews");
+        // game.markModified("reviews");
         game.save(function (saveerr, saveGame) {
           if (!saveerr) {
             res.status(200).send({"message": "Successfully deleted"});

@@ -1,0 +1,26 @@
+{
+  "name": "mangaBase",
+  "version": "1.0.0",
+  "description": "My first app with Mongoose",
+  "main": "mangaBase.js",
+  "scripts": {
+    "start": "node mangaBase.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mongoose",
+    "project",
+    "golden rules",
+    "individual",
+    "api design",
+    "manga"
+  ],
+  "author": "Saurav Majumdar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.7",
+    "mongoose": "^5.12.10",
+    "nodemon": "^2.0.7"
+  }
+}
