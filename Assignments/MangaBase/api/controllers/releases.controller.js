@@ -64,7 +64,7 @@ module.exports.releaseFullUpdateOne = function (req, res) {
         releaseUpdate.price = parseFloat(req.body.price);
         manga.save(function (saveerr, saveManga) {
           if (!saveerr) {
-            res.status(200).send(saveManga);
+            res.status(200).send(saveManga.releases);
           } else {
             res.status(400).send(saveerr.message);
           }

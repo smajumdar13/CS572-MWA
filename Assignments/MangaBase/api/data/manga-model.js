@@ -15,12 +15,6 @@ const releaseSchema = new mongoose.Schema({
   price: Number
 });
 
-// const reviewSchema = new mongoose.Schema({
-//   name: String,
-//   review: String,
-//   date: String
-// });
-
 const publicationSchema = new mongoose.Schema({
   name: String,
   address: String
@@ -54,4 +48,3 @@ mongoose.model("Manga", mangaSchema, "manga");
 mongoose.model("Artist", artistSchema, "artists");
 mongoose.model("Release", releaseSchema, "release");
 mongoose.model("Publication", publicationSchema, "publication");
-// mongoose.model("Review", reviewSchema, "reviews");type
