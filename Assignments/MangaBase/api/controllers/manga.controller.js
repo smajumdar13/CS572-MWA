@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Manga = mongoose.model("Manga");
-// require("./publishers.controller");
 
 module.exports.mangaGetAll = function (req, res) {
   console.log("Get all Manga");

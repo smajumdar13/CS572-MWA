@@ -15,6 +15,12 @@ const releaseSchema = new mongoose.Schema({
   price: Number
 });
 
+const reviewSchema = new mongoose.Schema({
+  name: String,
+  review: String,
+  date: String
+})
+
 const publicationSchema = new mongoose.Schema({
   name: String,
   address: String
@@ -41,10 +47,12 @@ const mangaSchema = new mongoose.Schema({
   minAge: Number,
   artists: [artistSchema],
   releases: [releaseSchema],
-  publication: publicationSchema
+  publication: publicationSchema,
+  reviews: [reviewSchema]
 });
 
 mongoose.model("Manga", mangaSchema, "manga");
 mongoose.model("Artist", artistSchema, "artists");
 mongoose.model("Release", releaseSchema, "release");
 mongoose.model("Publication", publicationSchema, "publication");
+mongoose.model("Review", reviewSchema, "reviews");

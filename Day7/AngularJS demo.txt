@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html ng-app = "myFirstApp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    .red {border-color: red;}
+    .green {border-color: green;}
+    .blue {color: blue;}
+    .orange {color: orange;}
+  </style>
+</head>
+<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+          
+  Angular JS Directives
+  <br/>
+  {{animal='cat';}}
+  <div ng-init = " name = 'Jack' " >
+  <p ng-bind = "name"></p>
+  Hello {{name}};
+    <br/>
+  
+          Welcome {{user}}
+          <br/>
+            <div>
+            Hello {{user}}!
+              <br>
+            <input type="text" name = "" ng-model = "user" />
+              <br/>
+  <input type = "checkbox" ng-model = "showParagraph">
+              <p ng-show = "showParagraph"> This is the paragraph. </p>
+              
+  <div ng-init="number = 19">
+    Pick a number between 0 and 20:
+    <input type = "text" ng-model="guess" ng-class = "{red:guess!=number, green:guess==number}">
+    
+    <p ng-hide="guess!=number">Correct</p>
+    <p ng-show="guess!=number">Incorrect</p>
+  </div>
+              
+    <div ng-init = "numbers = [0,1,2,3,4,5,6,7,8,9]">
+      <ul>
+        <li ng-repeat="number in numbers" ng-class="{blue: $even, orange: $odd}">{{number}}</li>
+      </ul>
+    </div>
+              
+    <div ng-init = "words = ['Jack', 'John', 'Jill', 'Jack'] ">
+      <ul>
+        <li ng-repeat="word in words track by $index" ng-class="{blue: $even, orange: $odd}">{{word}}</li>
+      </ul>
+    </div>          
+    <p> if $index is not used, it will not show the array if any element is repeated, therefore, track by index</p>
+                  
+         <div ng-init = "names = [{firstName: 'Jack', lastName: 'Dawson'}, {firstName: 'John', lastName: 'Williams'},
+                    {firstName: 'Jill', lastName: 'Sanders'}] ">
+      <ul>
+        <li ng-repeat="name in names track by $index" ng-class="{blue: $even, orange: $odd}">{{name.firstName}}{{name.lastName}}</li>
+      </ul>
+    </div>             
+              
+<div ng-init = "people = [{name: 'Jack', course: 'MPP', gpa: 3.5}, 
+                         {name: 'John', course: 'Software Engineering', gpa: 3.2},
+                         {name: 'Jill', course: 'MPP', gpa: 2.7},
+                         {name: 'Sam', course: 'WAP', gpa: 3.0}] ">
+      <ul>
+        <li ng-repeat="person in people track by $index" 
+            ng-class="{blue: $even, orange: $odd}">{{person.name}} {{person.course}} {{person.gpa}}
+        </li>
+      </ul>
+           <select name="" id="" ng-model="student" ng-options = "person.name group by person.course for person in people">
+           </select>
+           <br/>
+           <p>You have selected: {{student.name}} {{student.gpa}}
+             
+    </div>           
+
+              
+              
+              
+</body>
+</html>
+  
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+<!DOCTYPE html>
+<html ng-app>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    .red {border-color: red;}
+    .green {border-color: green;}
+    .blue {color: blue;}
+    .orange {color: orange;}
+  </style>
+</head>
+<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+          
+  Angular JS Directives
+               
+    <div ng-init = "names = [{firstName: 'Jack', lastName: 'Dawson'}, {firstName: 'John', lastName: 'Williams'},
+                    {firstName: 'Jill', lastName: 'Sanders'}] ">
+    </div>          
+                  
+         <div ng-init = "people = [{name: 'Jack', course: 'MPP', gpa: 3.5}, 
+                         {name: 'John', course: 'Software Engineering', gpa: 3.2},
+                         {name: 'Jill', course: 'MPP', gpa: 2.7},
+                         {name: 'Sam', course: 'WAP', gpa: 3.0}] ">
+           <p> Ordering a list by multiple parameters, first by course, and then by gpa in reverse order</p>
+      <ul>
+        <li ng-repeat="person in people | orderBy:['course' , '-gpa'] " 
+            ng-class="{blue: $even, orange: $odd}">{{person.name}} {{person.course}} {{person.gpa}}
+        </li>
+      </ul>
+           <select name="" id="" ng-model="student" ng-options = "person.name group by person.course for person in people">
+           </select>
+           <br/>
+           <p>You have selected: {{student.name}} {{student.gpa}}
+           
+    </div>           
+
+  <div ng-init = "total = 123.45">
+    <p>{{total | currency: "€"}} </p>
+  </div>              
+  <div ng-init = "total2 = 1234585.34">
+    <p>{{total2 | currency: "€"}} </p>
+  </div>               
+  <div ng-init = "total3 = 123.45853432">
+    <p>{{total3 | number:3}} </p>
+  </div>       
+  <div ng-init = "title = 'Maharishi Inernational University'">
+    <p>{{title | lowercase}} </p>
+  </div>   
+  <div ng-init = "firstDayOfCourse = 1621306800000">
+    <p>{{title | lowercase}} </p>
+    <p>{{firstDayOfCourse|date:"dd-MM-yyyy(hh:mm:ss:sss)"}}
+  </div> 
+  <div ng-init = "numbers = [1,2,3,4,5,6,7]">
+    <p>{{numbers | limitTo: 3}} </p>
+    <p>{{numbers | limitTo: -3}} </p>
+    <p> negative counts from back, and regular from front</p>
+  </div> 
+</body>
+</html>
+  
+  
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  
+  
+  
+  <!DOCTYPE html>
+<html ng-app = "myFirstApp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script>
+    angular.module("myFirstApp", []).controller("MyFirstController", MyFirstController);
+    function MyFirstController($scope){
+      $scope.name = "Jack";
+    }
+  </script>
+  
+</head>
+<body>
+  Angular JS Directives
+  <div ng-controller="MyFirstController">
+  Hello {{name}}! <br />
+  </div>       
+    
+</body>
+</html>
+  
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+<!DOCTYPE html>
+<html ng-app = "myFirstApp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script>
+    angular.module("myFirstApp", []).controller("MyFirstController", MyFirstController);
+    function MyFirstController($scope){
+      $scope.students = [{name: 'Jack', course: 'MPP', gpa: 3.5}, 
+                         {name: 'John', course: 'SWE', gpa: 3.2},
+                         {name: 'Jill', course: 'MPP', gpa: 2.7},
+                         {name: 'Sam', course: 'WAP', gpa: 3.0}];
+      $scope.number = 0;
+      $scope.increment = function(value){
+        $scope.number = $scope.number + value;
+      }
+      $scope.decrement = function(value){
+        $scope.number = $scope.number - value;
+      }
+    }
+  </script>
+  
+</head>
+<body>
+  Angular JS Directives
+  <div ng-controller="MyFirstController">  
+  
+      <ul>
+        <li ng-repeat="person in students" 
+            ng-class="{blue: $even, orange: $odd}">{{person.name}} {{person.course}} {{person.gpa}}
+        </li>
+      </ul>
+    
+    Number is: {{number}} <br />
+    <button ng-click="increment(5)"> +5</button>
+    <button ng-click="decrement(5)"> -5</button>
+    </div> 
+</body>
+</html>
+  
+  
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+<!DOCTYPE html>
+<html ng-app = "myFirstApp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script>
+    angular.module("myFirstApp", [])
+      .controller("MyFirstController", MyFirstController)
+      .controller("MySecondController", MySecondController);
+    function MyFirstController($scope){
+      var vm=this;
+      vm.name = "Jack";
+      $scope.students = [{name: 'Jack', course: 'MPP', gpa: 3.5}, 
+                         {name: 'John', course: 'SWE', gpa: 3.2},
+                         {name: 'Jill', course: 'MPP', gpa: 2.7},
+                         {name: 'Sam', course: 'WAP', gpa: 3.0}];
+      $scope.number = 0;
+      $scope.increment = function(value){
+        $scope.number = $scope.number + value;
+      }
+      $scope.decrement = function(value){
+        $scope.number = $scope.number - value;
+      }
+    }
+    function MySeconController($scope){
+      var vm=this;
+      vm.name = "John";
+    }
+  </script>
+  
+</head>
+<body>
+  Angular JS Directives
+  <div ng-controller="MyFirstController as MyJackCtrl">
+  Hello {{name}}! <br />
+   
+  
+      <ul>
+        <li ng-repeat="person in students" 
+            ng-class="{blue: $even, orange: $odd}">{{person.name}} {{person.course}} {{person.gpa}}
+        </li>
+      </ul>
+    
+    Number is: {{number}} <br />
+    <button ng-click="increment(5)"> +5</button>
+    <button ng-click="decrement(5)"> -5</button>
+    First controller div, name is {{name}}
+      <div ng-controller="MySecondController as MyJohnCtrl">
+        Nested second controller div, name is {{MyJohnCtrl.name}}, first controller is {{MyJackCtrl.name}}
+      </div>
+    </div> 
+</body>
+</html>
+  
+  
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+  

@@ -4,6 +4,7 @@ const controllerManga = require("../controllers/manga.controller");
 const controllerPublication = require("../controllers/publication.controller");
 const controllerRelease = require("../controllers/releases.controller");
 const controllerArtist = require("../controllers/artists.controller");
+const controllerReview = require("../controllers/reviews.controller");
 
 router
   .route("/manga")
@@ -37,7 +38,7 @@ router
   .patch(controllerRelease.releasePartialUpdateOne)
   .delete(controllerRelease.releaseDeleteOne);
 
-  router
+ router
   .route("/manga/:mangaId/artists")
   .get(controllerArtist.artistsGetAll)
   .post(controllerArtist.artistAddOne);
@@ -49,4 +50,16 @@ router
   .patch(controllerArtist.artistPartialUpdateOne)
   .delete(controllerArtist.artistDeleteOne);
 
-  module.exports = router;
+router
+  .route("/manga/:mangaId/reviews")
+  .get(controllerReview.reviewsGetAll)
+  .post(controllerReview.reviewAddOne);
+
+router
+  .route("/manga/:mangaId/reviews/:reviewId")
+  .get(controllerReview.reviewGetOne)
+  .put(controllerReview.reviewFullUpdateOne)
+  .patch(controllerReview.reviewPartialUpdateOne)
+  .delete(controllerReview.reviewDeleteOne);
+
+module.exports = router;
