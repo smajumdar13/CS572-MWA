@@ -27,7 +27,7 @@ module.exports.releaseGetOne = function (req, res) {
 
 module.exports.releaseAddOne = function (req, res) {
   const mangaId = req.params.mangaId;
-  // const releaseId = req.params.releaseId;
+  const releaseId = req.params.releaseId;
   
   Manga.findById(mangaId, function (err, manga) {
     manga.releases = manga.releases || [];
@@ -39,7 +39,7 @@ module.exports.releaseAddOne = function (req, res) {
         manga.markModified("releases");
         manga.save(function (saveerr, saveManga) {
           if (!saveerr) {
-            res.status(200).send(saveManga);
+            res.status(200).send(saveManga.releases);
           } else {
             res.status(400).send(saveerr.message);
           }
@@ -106,31 +106,49 @@ module.exports.releasePartialUpdateOne = function (req, res) {
   });
 };
 
+// module.exports.releaseDeleteOne = function (req, res) {
+//   const releaseId = req.params.releaseId;
+//   const mangaId = req.params.mangaId;
+
+//   Manga.findById(mangaId, function (err, manga) {
+//     if (!err) {
+//       if (!manga) {
+//         res.status(404).send("Manga was not found");
+//       } else {
+//         manga.release.id(releaseId).delete(function (removeerr, removeManga) {
+//           if (removeerr) {
+//             res.status(400).send(removeerr.message);
+//           }
+//         });
+//         // manga.markModified("releases");
+//         manga.save(function (saveerr, saveManga) {
+//           if (!saveerr) {
+//             res.status(200).send({ message: "Successfully deleted" });
+//           } else {
+//             res.status(400).send(saveerr.message);
+//           }
+//         });
+//       }
+//     } else {
+//       res.status(400).send(err.message);
+//     }
+//   });
+// };
+
 module.exports.releaseDeleteOne = function (req, res) {
   const releaseId = req.params.releaseId;
   const mangaId = req.params.mangaId;
 
-  Manga.findById(mangaId, function (err, manga) {
-    if (!err) {
-      if (!manga) {
-        res.status(404).send("Manga was not found");
+  Manga.findOneAndUpdate(
+    { _id: mangaId },
+    { $pull: { releases: { _id: releaseId } } },
+    { new: true },
+    function (err) {
+      if (err) {
+        console.log(err);
       } else {
-        manga.release.id(releaseId).delete(function (removeerr, removeManga) {
-          if (removeerr) {
-            res.status(400).send(removeerr.message);
-          }
-        });
-        // manga.markModified("releases");
-        manga.save(function (saveerr, saveManga) {
-          if (!saveerr) {
-            res.status(200).send({ message: "Successfully deleted" });
-          } else {
-            res.status(400).send(saveerr.message);
-          }
-        });
+        res.status(200).json({"message": "Release deleted successfully"});
       }
-    } else {
-      res.status(400).send(err.message);
     }
-  });
+  );
 };

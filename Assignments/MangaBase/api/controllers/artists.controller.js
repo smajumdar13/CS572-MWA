@@ -27,8 +27,8 @@ module.exports.artistGetOne = function (req, res) {
 
 module.exports.artistAddOne = function (req, res) {
   const mangaId = req.params.mangaId;
-  // const artistId = req.params.artistId;
-  
+  const artistId = req.params.artistId;
+
   Manga.findById(mangaId, function (err, manga) {
     manga.artists = manga.artists || [];
     if (!err) {
@@ -39,7 +39,7 @@ module.exports.artistAddOne = function (req, res) {
         // manga.markModified("artists");
         manga.save(function (saveerr, saveManga) {
           if (!saveerr) {
-            res.status(200).send(saveManga);
+            res.status(200).send(saveManga.artists);
           } else {
             res.status(400).send(saveerr.message);
           }
@@ -106,31 +106,49 @@ module.exports.artistPartialUpdateOne = function (req, res) {
   });
 };
 
+// module.exports.artistDeleteOne = function (req, res) {
+//   const artistId = req.params.artistId;
+//   // const mangaId = req.params.mangaId;
+
+//   Manga.findById(mangaId, function (err, manga) {
+//     if (!err) {
+//       if (!manga) {
+//         res.status(404).send("Manga was not found");
+//       } else {
+//         manga.artist.id(req.body._id).remove(function (removeerr, removeManga) {
+//           if (removeerr) {
+//             res.status(400).send(removeerr.message);
+//           }
+//         });
+//         // manga.markModified("artists");
+//         manga.save(function (saveerr, saveManga) {
+//           if (!saveerr) {
+//             res.status(200).send({ message: "Successfully deleted" });
+//           } else {
+//             res.status(400).send(saveerr.message);
+//           }
+//         });
+//       }
+//     } else {
+//       res.status(400).send(err.message);
+//     }
+//   });
+// };
+
 module.exports.artistDeleteOne = function (req, res) {
   const artistId = req.params.artistId;
-  // const mangaId = req.params.mangaId;
+  const mangaId = req.params.mangaId;
 
-  Manga.findById(mangaId, function (err, manga) {
-    if (!err) {
-      if (!manga) {
-        res.status(404).send("Manga was not found");
+  Manga.findOneAndUpdate(
+    { _id: mangaId },
+    { $pull: { artists: { _id: artistId } } },
+    { new: true },
+    function (err) {
+      if (err) {
+        console.log(err);
       } else {
-        manga.artist.id(req.body._id).remove(function (removeerr, removeManga) {
-          if (removeerr) {
-            res.status(400).send(removeerr.message);
-          }
-        });
-        // manga.markModified("artists");
-        manga.save(function (saveerr, saveManga) {
-          if (!saveerr) {
-            res.status(200).send({ message: "Successfully deleted" });
-          } else {
-            res.status(400).send(saveerr.message);
-          }
-        });
+        res.status(200).json({"message": "Artist deleted successfully"});
       }
-    } else {
-      res.status(400).send(err.message);
     }
-  });
+  );
 };
