@@ -1,0 +1,11 @@
+<h2>Welcome to the Beers' page</h2> 
+
+<ul>
+    <li ng-repeat = "beer in beersCtrl.beers" style="list-style-type:none;"> 
+        Name: {{beer.name}} <img src = {{beer.image_url}} style="float:left; width:30px; height:80px; margin-right: 10px"> <br/> 
+        Tagline: {{beer.tagline}} <br/>
+        Short Description: {{beer.description}}<br/>
+         <br/>
+         <br/>
+    </li>
+ </ul>
