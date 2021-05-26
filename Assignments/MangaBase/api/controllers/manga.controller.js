@@ -204,7 +204,7 @@ module.exports.mangaPartialUpdateOne = function (req, res) {
           response.message = err;
         } else {
           response.status = 204;
-          response.message = updatedGame;
+          response.message = updatedManga;
         }
         res.status(response.status).json(response.message);
       });

@@ -1,10 +1,10 @@
 <h1>Information about manga: <p>{{vm.manga.title}}</p></h1>
 
 Total Chapters: {{vm.manga.totalChapters}} <br/>
-Artist(s): {{vm.manga.artists}}<br/>
+Artist(s): <li ng-repeat="artist in vm.manga.artists" style="display: inline; list-style-type: none;">{{artist.name}} &nbsp; </li><br/>
 Publication: {{vm.manga.publication.name}} <br/>
 Released Year: {{vm.manga.releasedYear}} <br/>
-Completed Year: {{vm.game.publisher.name}}<br/>
+Completed Year: {{vm.manga.completedYear}}<br/>
 
 <br/>
 <button><a href="../../index.html">Go Back</a></button>
