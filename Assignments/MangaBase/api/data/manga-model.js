@@ -45,10 +45,12 @@ const mangaSchema = new mongoose.Schema({
     required: true
   },
   minAge: Number,
+  // image: String,
   artists: [artistSchema],
   releases: [releaseSchema],
   publication: publicationSchema,
   reviews: [reviewSchema]
+  
 });
 
 mongoose.model("Manga", mangaSchema, "manga");

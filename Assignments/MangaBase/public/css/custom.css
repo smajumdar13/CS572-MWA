@@ -2,8 +2,8 @@
 body {
   font-family: Tahoma, "Segoe UI Light", "Segoe UI", Geneva, Verdana, sans-serif;
   color: rgb(73, 73, 73);
+  padding-left: 2vw;
 }
-
 /* heading styles and alignment */
 .header {
   display: flex;
@@ -16,7 +16,9 @@ body {
   padding-left: 1.5vw;
   font-size: 1.2vw;
 }
-
+li{
+  vertical-align: middle;
+}
 .headImage {
   width: 75px;
   height: 75px;

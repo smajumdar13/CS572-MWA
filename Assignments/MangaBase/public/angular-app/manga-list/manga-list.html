@@ -1,3 +1,3 @@
 <ul>
-    <li ng-repeat="manga in vm.mangas" style="list-style-type: none;"><a ng-href = "#/manga/{{manga._id}}"> {{ manga.title }} </a></li>
+    <li ng-repeat="manga in vm.mangas | orderBy: 'title'" style="list-style-image: url(../../images/bullet.png); margin-bottom: 14px"><a ng-href = "#/manga/{{manga._id}}"> {{ manga.title }} </a></li>
 </ul>
