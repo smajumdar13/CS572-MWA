@@ -1,0 +1,5 @@
+<h1> {{vm.title}} </h1>
+
+<ul>
+    <li ng-repeat="manga in vm.mangas"><a ng-href = "#/manga/{{manga._id}}"> {{ manga.title }} </a></li>
+</ul>

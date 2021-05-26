@@ -1,14 +1,14 @@
-angular.module("meanGames", ["ngRoute"]).config(config);
+angular.module("mangaBase", ["ngRoute"]).config(config);
 
 function config($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix("");
     $routeProvider.when("/", {
-        templateUrl: "angular-app/game-list/game-list.html",
-        controller: "GamesController",
+        templateUrl: "angular-app/manga-list/manga-list.html",
+        controller: "MangasController",
         controllerAs: "vm"
-    }).when("/game/:id", {
-        templateUrl: "angular-app/game-one/game-one.html",
-        controller: "GameController",
+    }).when("/manga/:id", {
+        templateUrl: "angular-app/manga-one/manga-one.html",
+        controller: "MangaController",
         controllerAs: "vm"
     });
 }

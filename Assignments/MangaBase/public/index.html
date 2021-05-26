@@ -1,47 +1,35 @@
 <!DOCTYPE html>
-<html >
-    <head>
-        <title>MEAN Games</title>
-        <link href="css/bootstrap.min.css" rel ="stylesheet"/>
-        <link href="css/custom.css" rel ="stylesheet"/>
+<html ng-app="mangaBase">
+  <head>
+    <title>MangaBase</title>
+    <link rel="icon" type="image/png" href="./images/logo.png" />
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet" /> -->
+    <link href="css/custom.css" rel="stylesheet" />
 
-        <!-- <script src = "../node_modules/angular/angular.js"></script>
+    <!-- <script src = "../node_modules/angular/angular.js"></script>
         <script src = "../node_modules/angular-route/angular-route.js"></script> -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.min.js"></script>
-        <script src = "./angular-app/app.js"></script>
-        <script src = "./angular-app/game-list/game-list-controller.js"></script>
-        <script src = "./angular-app/game-one/game-one-controller.js"></script>
-        <script src = "./angular-app/game-data-factory/game-data-factory.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.min.js"></script>
+    <script src="./angular-app/app.js"></script>
+    <script src="./angular-app/manga-list/manga-list-controller.js"></script>
+    <script src="./angular-app/manga-one/manga-one-controller.js"></script>
+    <script src="./angular-app/data-factory/data-factory.js"></script>
+  </head>
+  <body>
+    <header class="header"  >
+    
+          <img src="images/M.png" class="headImage" alt="M image">
+      <h1> &nbsp; Welcome to MangaBase!</h1>
+    </header>
+    
+    <br/>
+    <br/>
+    <div ng-view class="bodyStart"></div>
 
-    </head>
-    <body ng-app="meanGames">
+    <br />
 
-        <!-- Before ng-view <br/> -->
-        <div ng-view></div>
-        <!-- After ng-view <br/> -->
-<br/>
-
-        <footer class="footer">
-            <div class="container">
-                <p class="text-muted" text-center>
-                    <a href=http://comprp.miu.edu" target="_blank" />
-                        <img src="./images/compro-web-logo-442x112.png" height="60" alt="MIU compro">
-                    </a>
-                    <br>
-                    <small class="text-black-50 text center">
-                        &copy;2021 Maharishi  International University. All Right Reserved.
-                    </small>
-                </p>
-            </div>
-        </footer>
-
- <!--       <script src = "../node_modules/angular/angular.js"></script>
-        <script src = "../node_modules/angular-route/angular-route.js"></script>
-        <script src = "./angular-app/app.js"></script>
-        <script src = "./angular-app/game-list/game-list-controller.js"></script>
-        <script src = "./angular-app/game-one/game-one-controller.js"></script> -->
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.min.js"></script> -->
-    </body>
+    <footer class="footer">
+        &copy; 2021 Saurav Majumdar. All Rights Reserved.
+   </footer>
+  </body>
 </html>
