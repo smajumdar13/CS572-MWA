@@ -1,45 +1,59 @@
 const mongoose = require("mongoose");
 const Manga = mongoose.model("Manga");
 
+// module.exports.mangaGetAll = function (req, res) {
+//   console.log("Get all Manga");
+//   console.log(req.query);
+//   // return "done";
+//   let offset = 0;
+//   let count = 5;
+//   const maxCount = 10;
+
+//   if (req.query && req.query.offset) {
+//     offset = parseInt(req.query.offset);
+//   }
+//   if (req.query && req.query.count) {
+//     count = parseInt(req.query.count);
+//   }
+
+//   if (isNaN(offset) || isNaN(count)) {
+//     res
+//       .status(400)
+//       .json({ message: "QueryString Offset and Count must be a number" });
+//     return;
+//   }
+//   if (count > maxCount) {
+//     res
+//       .status(400)
+//       .json({ message: "QueryString Count must not exceed " + maxCount });
+//   } else {
+//     Manga.find()
+//       .skip(offset)
+//       .limit(count)
+//       .exec(function (err, manga) {
+//         if (err) {
+//           console.log("Error: ", err);
+//           res.status(500).json(err);
+//         } else {
+//           console.log("Found manga", manga);
+//           res.status(200).json(manga);
+//         }
+//       });
+//   }
+// };
+
 module.exports.mangaGetAll = function (req, res) {
   console.log("Get all Manga");
   console.log(req.query);
-
-  let offset = 0;
-  let count = 5;
-  const maxCount = 10;
-
-  if (req.query && req.query.offset) {
-    offset = parseInt(req.query.offset);
-  }
-  if (req.query && req.query.count) {
-    count = parseInt(req.query.count);
-  }
-
-  if (isNaN(offset) || isNaN(count)) {
-    res
-      .status(400)
-      .json({ message: "QueryString Offset and Count must be a number" });
-    return;
-  }
-  if (count > maxCount) {
-    res
-      .status(400)
-      .json({ message: "QueryString Count must not exceed " + maxCount });
-  } else {
-    Manga.find()
-      .skip(offset)
-      .limit(count)
-      .exec(function (err, manga) {
-        if (err) {
-          console.log("Error: ", err);
-          res.status(500).json(err);
-        } else {
-          console.log("Found manga", manga.length);
-          res.status(200).json(manga);
-        }
-      });
-  }
+  Manga.find().exec(function (err, manga) {
+    if (err) {
+      console.log("Error: ", err);
+      res.status(500).json(err);
+    } else {
+      console.log("Found manga", manga);
+      res.status(200).json(manga);
+    }
+  });
 };
 
 module.exports.mangaGetOne = function (req, res) {
@@ -61,12 +75,40 @@ module.exports.mangaGetOne = function (req, res) {
   });
 };
 
+// module.exports.mangaAddOne = function (req, res) {
+//   console.log("Add new manga");
+//   const response = {
+//     status: 201,
+//     message: "",
+//   };
+//   if (req.body && req.body.title && req.body.rating && req.body.totalChapters) {
+//     console.log(req.body);
+
+//     const newManga = {};
+//     newManga.title = req.body.title;
+//     newManga.rating = parseInt(req.body.rating);
+//     newManga.totalChapters = parseInt(req.body.totalChapters);
+
+//     Manga.create(newManga, function (err, manga) {
+//       if (err) {
+//         response.status = 500;
+//         response.message = err;
+//       } else {
+//         console.log("Manga added successfully", manga);
+//         response.status = 201;
+//         response.message = manga;
+//       }
+//     });
+//   } else {
+//     console.log("Data missing from POST body");
+//     response.status = 400;
+//     response.message = { message: "Request data missing from POST body" };
+//     res.status(response.status).json(response.message);
+//   }
+// };
+
 module.exports.mangaAddOne = function (req, res) {
   console.log("Add new manga");
-  const response = {
-    status: 201,
-    message: "",
-  };
   if (req.body && req.body.title && req.body.rating && req.body.totalChapters) {
     console.log(req.body);
 
@@ -74,22 +116,13 @@ module.exports.mangaAddOne = function (req, res) {
     newManga.title = req.body.title;
     newManga.rating = parseInt(req.body.rating);
     newManga.totalChapters = parseInt(req.body.totalChapters);
-
     Manga.create(newManga, function (err, manga) {
       if (err) {
-        response.status = 500;
-        response.message = err;
+        res.status(400).send(err.message);
       } else {
-        console.log("Manga added successfully", manga);
-        response.status = 201;
-        response.message = manga;
+        res.status(200).send(manga);
       }
     });
-  } else {
-    console.log("Data missing from POST body");
-    response.status = 400;
-    response.message = { message: "Request data missing from POST body" };
-    res.status(response.status).json(response.message);
   }
 };
 
@@ -164,7 +197,7 @@ module.exports.mangaPartialUpdateOne = function (req, res) {
       }
       if (req.body.minAge) {
         manga.minAge = req.body.minAge;
-      }      
+      }
       manga.save(function (err, updatedManga) {
         if (err) {
           response.status = 500;
@@ -185,13 +218,13 @@ module.exports.mangaDeleteOne = function (req, res) {
   Manga.findByIdAndDelete(mangaId).exec(function (err, deletedManga) {
     const response = {
       status: 204,
-      message: deletedGame,
+      message: "Successfully deleted"
     };
     if (err) {
       console.log("Error finding manga: " + mangaId);
       response.status = 500;
       response.message = err;
-    } else if (!deletedGame) {
+    } else if (!deletedManga) {
       response.status = 404;
       response.message = { message: "Manga not found" };
     }
