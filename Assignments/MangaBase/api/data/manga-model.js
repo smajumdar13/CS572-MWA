@@ -31,7 +31,10 @@ const mangaSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  releasedYear: Number,
+  releasedYear: {
+    type: Number,
+    required: true
+  },
   completedYear: Number,
   rating: {
     type: Number,

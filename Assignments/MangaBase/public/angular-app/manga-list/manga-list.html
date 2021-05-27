@@ -1,3 +1,23 @@
 <ul>
     <li ng-repeat="manga in vm.mangas | orderBy: 'title'" style="list-style-image: url(../../images/bullet.png); margin-bottom: 14px"><a ng-href = "#/manga/{{manga._id}}"> {{ manga.title }} </a></li>
 </ul>
+<form name="vm.gameForm" ng-submit="vm.addGame()" >
+
+    To add a new manga please fill in all the fields below:<br/>
+  
+    Title: <input type="text" name="title" required ng-model="vm.<form name="vm.mangaForm" ng-submit="vm.addManga()" >
+
+  To add a new game please fill in all the fields below:<br/>
+
+  Title: <input type="text" name="title" required ng-model="vm.newMangaTitle" style="color:black"/><br/>
+  Released Year: <input type="text" name="year" required ng-model="vm.newMangaYear" style="color:black"/><br/>
+
+  Rating: <input type="text" name="rating" required ng-model="vm.newMangaRating" style="color:black"/><br/>
+
+  Total Chapters: <input type="text" name="minPlayers" required ng-pattern="/^[0-9]{1,2}$/" ng-model="vm.newMangaTotalChapters" style="color:black"/><br/>
+
+  Publication: <input type="text" name="designer" required ng-model="vm.newGameDesigner" style="color:black"/><br/>
+
+  <button type="submit" class="btn-success">Add Manga</button><br/>
+
+</form>

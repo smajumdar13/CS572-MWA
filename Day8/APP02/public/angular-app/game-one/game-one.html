@@ -1,0 +1,14 @@
+<h1>Information about game: <p>{{vm.game.title}} 
+    <h2><game-rating stars={{vm.rating}}></game-rating></h2>
+    
+</p></h1>
+
+<!-- filter: currency -->
+Price: {{vm.game.price | currency}}<br/>
+Minimum Players: {{vm.game.minPlayers}} <br/>
+Maximum Players: {{vm.game.maxPlayers}} <br/>
+Minimum Age: {{vm.game.minAge}}<br/>
+Publisher: {{vm.game.publisher.name}}<br/>
+
+<br/>
+<button><a href="../../index.html">Go Back</a></button>

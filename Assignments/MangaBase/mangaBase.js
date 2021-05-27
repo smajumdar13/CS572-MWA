@@ -4,7 +4,7 @@ const app = express();
 const path = require("path");
 const routes = require("./api/routes");
 
-app.set("port", 4000);
+app.set("port", 5000);
 
 app.use(function (req, res, next) {
   console.log(req.method, req.url);
@@ -13,7 +13,7 @@ app.use(function (req, res, next) {
 
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: false }));
 
 app.use("/api", routes);
 
