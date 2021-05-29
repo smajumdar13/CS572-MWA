@@ -13,7 +13,17 @@ Rating: {{vm.manga.rating}} <br />
 Publication: {{vm.manga.publication.name}} <br />
 Released Year: {{vm.manga.releasedYear}} <br />
 Completed Year: {{vm.manga.completedYear}}<br />
-<br />
+Total Chapters: {{vm.manga.totalChapters}}<br />
+Releases:
+<!-- <ul>
+  <li
+    ng-repeat="release in vm.manga.releases | orderBy: 'price'"
+    style="list-style-type: none; margin-bottom: 10px"
+  >
+    <a ng-href="#/manga/{{manga._id}}/releases/{{release._id}}"> {{ release.type }} </a> &nbsp;
+  </li>
+</ul>
+<br /> -->
 <li
   ng-repeat="release in vm.manga.releases"
   style="display: inline; list-style-type: none"
@@ -29,5 +39,19 @@ Reviews:
   <div class="space"></div>
 </li>
 
-<br />
-<button><a href="../../index.html">Go Back</a></button>
+<form name="vm.updateMangaForm" ng-submit="vm.updateManga()" >
+
+    Please fill in the required fields that need update: <br/>
+  
+    Total Chapters: <input type="text" name="price" required ng-model="vm.editedMangaTotalChapters" style="color:black"/><br/>
+  
+    <button type="submit" class="btn-success">Update Manga</button> 
+  </form>
+  <br/>
+  <button type="submit" class="btn-danger" ng-click="vm.deleteManga(vm.manga._id)">Delete Manga</button>
+  
+  <br/>
+  <br/>
+  <button class = "btn-secondary"><a href="../../index.html">Go Back</a></button>
+  
+  </div>

@@ -4,7 +4,7 @@ function DataFactory($http) {
   return {
     getAllMangas: getAllMangas,
     getOneManga: getOneManga,
-    addOneManga: addOneManga,
+    addManga: addManga,
     partialUpdateManga: partialUpdateManga,
     deleteManga: deleteManga,
   };
@@ -17,7 +17,7 @@ function DataFactory($http) {
       .then(complete)
       .catch(failed);
   }
-  function addOneManga(manga) {
+  function addManga(manga) {
     return $http.post("/api/manga", manga).then(complete).catch(failed);
   }
   function partialUpdateManga(id, manga) {

@@ -1,4 +1,4 @@
-angular.module("meanGames").controller("GameController", GameController);
+angular.module("jobSearch").controller("GameController", GameController);
 
 function _getStarRating(stars) {
   return new Array(stars);

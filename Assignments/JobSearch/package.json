@@ -1,0 +1,26 @@
+{
+  "name": "jobsearch",
+  "version": "1.0.0",
+  "description": "Job Search Application",
+  "main": "jobSearch.js",
+  "scripts": {
+    "start": "node jobsearch.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "job",
+    "search",
+    "MEAN",
+    "fullstack"
+  ],
+  "author": "Saurav Majumdar",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.8.2",
+    "angular-route": "^1.8.2",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.9",
+    "mongoose": "^5.12.12",
+    "nodemon": "^2.0.7"
+  }
+}

@@ -4,16 +4,16 @@ function _getStarRating(stars) {
   return new Array(stars);
 }
 
-function Controller($routeParams, DataFactory, $route) {
+function MangaController($routeParams, DataFactory, $route) {
   const vm = this;
   let mangaId = $routeParams.id;
   DataFactory.getOneManga(mangaId)
     .then(function (manga) {
       vm.manga = manga;
       vm.rating = _getStarRating(vm.manga.rate);
-      vm.editedMangaReleasedYear = vm.manga.releasedYear;
+      //   vm.editedMangaReleasedYear = vm.manga.releasedYear;
       vm.editedMangaTotalChapters = vm.manga.totalChapters;
-      vm.editedMangaPublication = vm.manga.publication;
+      //   vm.editedMangaPublication = vm.manga.publication;
     })
     .catch(function (error) {
       console.log(error);
@@ -27,6 +27,7 @@ function Controller($routeParams, DataFactory, $route) {
       rating: vm.manga.rating,
       totalChapters: vm.editedMangaTotalChapters,
       publication: vm.manga.publication,
+      releases: vm.manga.releases,
     };
     DataFactory.partialUpdateManga(mangaId, editedManga)
       .then(function (manga) {

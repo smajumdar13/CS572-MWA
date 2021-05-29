@@ -1,0 +1,31 @@
+<div class="body-content">
+  <h1>{{vm.job.title}} </h1>
+
+  <p>
+    Description: {{vm.job.description}}</br>
+    Experiences: {{vm.job.experience}}</br>
+    Skills:{{vm.job.skills}}</br>
+    Salary: {{vm.job.salary | currency}}</br>
+    Date Posted: {{vm.job.postDate | date: dd.MM.yyyy}}
+  </p>
+
+  <form name="vm.updateJobForm" ng-submit="vm.updateJob()">
+
+    Please fill and update the required fields:<br />
+    Description: <input type="text" name="description" required ng-model="vm.editedJobDescription"
+      style="color:black" />
+    <br />
+    Experience: <input type="text" name="experience" required ng-model="vm.editedJobExperience" style="color:black" />
+    <br />
+    Skills: <input type="text" name="skills" required ng-model="vm.editedJobSkills" style="color:black" /><br />
+    <br />
+    <button type="submit" class="btn-success">Update Job Post</button>
+    &nbsp;
+    <button type="submit" class="btn-danger" ng-click="vm.deleteJob(vm.job._id)">Delete Job Post</button>
+  </form>
+  <br />
+
+  <br /> <br />
+  <button class="btn-secondary"><a href="../../index.html">Go to MainPage</a></button>
+
+</div>

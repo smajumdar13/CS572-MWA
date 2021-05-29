@@ -116,6 +116,8 @@ module.exports.mangaAddOne = function (req, res) {
     newManga.title = req.body.title;
     newManga.rating = parseInt(req.body.rating);
     newManga.totalChapters = parseInt(req.body.totalChapters);
+    newManga.releasedYear = parseInt(req.body.releasedYear);
+    newManga.completedYear = parseInt(req.body.completedYear);
     Manga.create(newManga, function (err, manga) {
       if (err) {
         res.status(400).send(err.message);
@@ -218,7 +220,7 @@ module.exports.mangaDeleteOne = function (req, res) {
   Manga.findByIdAndDelete(mangaId).exec(function (err, deletedManga) {
     const response = {
       status: 204,
-      message: "Successfully deleted"
+      message: "Successfully deleted",
     };
     if (err) {
       console.log("Error finding manga: " + mangaId);

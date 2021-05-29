@@ -1,0 +1,47 @@
+/* whole body style */
+body {
+  font-family: Tahoma, "Segoe UI Light", "Segoe UI", Geneva, Verdana, sans-serif;
+  color: rgb(73, 73, 73);
+  padding-left: 2vw;
+}
+/* heading styles and alignment */
+.header {
+  display: flex;
+  background-color: rgb(117, 159, 202);
+  width: 100%;
+  color: rgb(255, 232, 232);
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding-left: 1.5vw;
+  padding-top: 0.8vw;
+  font-size: 1.2vw;
+}
+li {
+  vertical-align: middle;
+}
+.headImage {
+  width: 75px;
+  height: 75px;
+  padding-top: 0.6vw;
+}
+.bodyStart {
+  padding-top: 4vw;
+}
+.footer {
+  height: 1.5vw;
+  padding-left: 0.3vw;
+  padding-right: 0.3vw;
+  font-size: 1vw;
+  background-color: rgb(209, 209, 209);
+  color: rgb(71, 71, 71);
+  width: 99.5%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding-bottom: 0.2vw;
+  text-align: center;
+}
+.space {
+  padding-bottom: 0.4vw;
+}

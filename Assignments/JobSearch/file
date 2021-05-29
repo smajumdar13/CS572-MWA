@@ -1,0 +1,17 @@
+Write a data-driven MEAN CRUD application to mange JobSeraching.
+
+The document is a job opening {title, salary, location, description,
+ experience, skills, postDate}
+
+location is a sub-document.
+
+skills is an array.
+
+postDate should use proper date filter.
+
+salary should use proper filter.
+
+Make sure you have proper API hardening.
+
+If you have time work on adding reviews to the posting. 
+Each review is a sub-document {date, review, nameOfUser}.
