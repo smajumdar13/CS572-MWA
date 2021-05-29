@@ -1,13 +1,18 @@
 <h1>{{vm.title}}</h1>
+<br />
+Search: <input ng-model="search" type="search" name="search">
+<br />
+<br />
 
 <ul>
-  <li ng-repeat="job in vm.jobs | orderBy:'title'">
+  <li ng-repeat="job in vm.jobs | filter:search">
     <a ng-href="#/job/{{job._id}}"> {{ job.title }} </a>
   </li>
 </ul>
+<br />
 <form name="vm.jobForm" ng-submit="vm.addJob()">
   To add a new job please fill in all the fields below:<br />
-
+  <br />
   Title:
   <input type="text" name="title" required ng-model="vm.newJobTitle" style="color: black" /><br />
 
@@ -27,6 +32,6 @@
 
   Date Posted:
   <input type="text" name="postDate" required ng-model="vm.newJobPostDate" style="color: black" /><br />
-
+  <br />
   <button type="submit" class="btn-success">Add Job</button><br />
 </form>

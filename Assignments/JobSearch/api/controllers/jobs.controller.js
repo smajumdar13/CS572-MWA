@@ -44,7 +44,7 @@ module.exports.jobsGetAll = function (req, res) {
   } else {
     Job.find()
       .skip(offset)
-      .limit(count)
+      .limit(maxCount)
       .exec(function (err, jobs) {
         if (err) {
           console.log("Error: ", err);
