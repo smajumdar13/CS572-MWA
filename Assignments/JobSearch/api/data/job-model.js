@@ -18,7 +18,7 @@ const jobSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  skills: Array, ultimate: String,
+  skills: Array, type: String,
   postDate: {
     type: Date,
     required: true,
@@ -26,4 +26,4 @@ const jobSchema = new mongoose.Schema({
 });
 
 mongoose.model("Job", jobSchema, "jobs");
-mongoose.model("Location", locationSchema, "locations");
+mongoose.model("Location", locationSchema, "location");

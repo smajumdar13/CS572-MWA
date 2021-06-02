@@ -15,3 +15,34 @@ Make sure you have proper API hardening.
 
 If you have time work on adding reviews to the posting. 
 Each review is a sub-document {date, review, nameOfUser}.
+
+
+mongo
+show dbs
+use dbname
+show collections
+
+db.createCollection("collectionName")
+db.collectionName.insert({name:"MongoDB", role:"DB"})
+db.collectionName.insert([{1}, {2}])
+
+db.collectionName.find().pretty()
+db.collectionName.find().pretty().count()
+db.collectionName.find({"_id": ObjectId(id)}).pretty()
+
+db.collectionName.update({name:"Angular"}, {$set: {name: "AngularJS"}})
+
+(update can also be used to add data) =>
+db.collectionName.update({}, {$set: {language: "JS"}}, {multi: true}) 
+=> " multi: true " adds to all data sets in the collectionName
+
+db.collectionName.remove({name: "Express})
+db.collectionName.remove({}) => remove all
+
+db.collectionName.drop() => drop collection
+db.dropDatabase()
+
+cmdline > mongorestore --db dbName --gzip zippedDbLocation
+cmdline > mongoimport --db dbName --collection collectionName --file fileName.json --jsonArray
+cmdline > mongodump --db dbName --gzip --out folderName/collectionName.json
+

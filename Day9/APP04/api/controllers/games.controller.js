@@ -42,16 +42,91 @@ const Game = mongoose.model("Game");
 //   }
 // };
 
+// module.exports.gamesGetAll = function (req, res) {
+//   console.log("Get the Games");
+//   console.log(req.query);
+
+//   Game.find().exec(function (err, games) {
+//     if (err) {
+//       console.log("Error: ", err);
+//       res.status(500).json(err);
+//     } else {
+//       console.log("Found games", games.length);
+//       res.status(200).json(games);
+//     }
+//   });
+// };
+
+const runGeoQuery = function (req, res) {
+  const lat = parseFloat(req.query.lat);
+  const lng = parseFloat(req.query.lng);
+  console.log("Geo Searching");
+
+  const query = {
+    "publishers.location": {
+      $near: {
+        $geometry: {
+          type: "point",
+          coordinate: [lng, lat]
+        },
+        $maxDistance: 1000,
+        $minDistnce: 0
+      }
+    }
+  };
+
+  Game.find(query).exec(function (err, games) {
+    if (err) {
+      console.log("Error", err);
+    }
+    console.log("Found games");
+    res.status(200).json(games);
+  });
+}
+
 module.exports.gamesGetAll = function (req, res) {
   console.log("Get the Games");
   console.log(req.query);
 
-  Game.find().exec(function (err, games) {
+  if (req.query && req.query.lat && req.query.lng) {
+    runGeoQuery(req, res);
+    return;
+
+  }
+  const maxCount = 10;
+  const defaultOffset = 0;
+  const defaultcount = 5;
+  let offset = defaultOffset;
+  let count = defaultcount;
+
+  if (req.query && req.query.offset) {
+    offset = parseInt(req.query.offset);
+
+  }
+
+  if (req.query && req.query.count) {
+    count = parseInt(req.query.count);
+
+  }
+
+  //This is the type check
+  if (isNaN(offset) || isNaN(count)) {
+    res.status(400).json({ "message:": "QueryString offset and count should be numbers." });
+  }
+
+  //Limit check
+  if (count > maxCount) {
+    response.status(400).json({ "message": "QueryString count cannot exceed " + maxCount });
+
+  }
+
+  Game.find().skip(offset).limit(count).exec(function (err, games) {
+
     if (err) {
-      console.log("Error: ", err);
-      res.status(500).json(err);
+      console.log("Error finding games");
+      res.status(500).json({ "Error": err });
     } else {
-      console.log("Found games", games.length);
+      console.log("Found games", games);
       res.status(200).json(games);
     }
   });

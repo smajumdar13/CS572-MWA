@@ -10,12 +10,12 @@ module.exports.usersRegister = function (req, res) {
   const newUser = {
     name: req.body.name || null,
     username: req.body.username,
-    password: req.body.password,
+    password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
   };
 
   User.create(newUser, function (err, user) {
     const response = {
-      status: 200,
+      status: 201,
       message: user,
     };
     if (err) {
@@ -47,15 +47,14 @@ module.exports.usersAuthenticate = function (req, res) {
       response.status = 400;
       response.message = err;
     } else {
+      // console.log("User Authenticated");
       if (!user) {
         response.status = 404;
         response.message = { message: "User does not exist" };
       } else {
         if (bcrypt.compareSync(req.body.password, user.password)) {
           console.log("User Authenticated");
-          const token = jwt.sign({ user: user.name }, "cs572", {
-            expiresIn: 3600,
-          }); //token expires after 1 hour
+          const token = jwt.sign({ user: user.name }, "cs572", { expiresIn: 3600 }); //token expires after 1 hour
           response.message = {
             success: true,
             token: token,
@@ -79,7 +78,7 @@ module.exports.authenticate = function (req, res, next) {
     jwt.verify(token, "cs572", function (err, decoded) {
       if (err) {
         console.log(err);
-        res.status(403).json({ message: "Unauthorized" });
+        res.status(403).json({ "message": "Unauthorized" });
       } else {
         req.user = decoded.user;
         next();
@@ -89,3 +88,4 @@ module.exports.authenticate = function (req, res, next) {
     res.status(403).json({ message: "No token provided" });
   }
 };
+

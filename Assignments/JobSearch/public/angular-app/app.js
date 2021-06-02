@@ -12,5 +12,10 @@ function config($routeProvider, $locationProvider) {
       templateUrl: "angular-app/job-one/job-one.html",
       controller: "JobController",
       controllerAs: "vm",
+    })
+    .when("/job/:jobId/location", {
+      templateUrl: "angular-app/job-one/job-one.html",
+      controller: "locationController",
+      controllerAs: "vm",
     });
 }

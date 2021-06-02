@@ -27,7 +27,6 @@ module.exports.reviewGetOne = function (req, res) {
 
 module.exports.reviewAddOne = function (req, res) {
   const mangaId = req.params.mangaId;
-  // const reviewId = req.params.reviewId;
 
   Manga.findById(mangaId, function (err, manga) {
     manga.reviews = manga.reviews || [];
@@ -39,7 +38,9 @@ module.exports.reviewAddOne = function (req, res) {
         // manga.markModified("reviews");
         manga.save(function (saveerr, saveManga) {
           if (!saveerr) {
-            res.status(200).send("Review added successfully"); // send(saveManga.reviews);
+            res.status(200).send("Review added successfully");
+            console.log(saveManga);
+            // send(saveManga.reviews);
           } else {
             res.status(400).send(saveerr.message);
           }
@@ -122,7 +123,7 @@ module.exports.reviewDeleteOne = function (req, res) {
       if (err) {
         console.log(err);
       } else {
-        res.status(200).json({"message": "Review deleted successfully"});
+        res.status(200).json({ "message": "Review deleted successfully" });
       }
     }
   );

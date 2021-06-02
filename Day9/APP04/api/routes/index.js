@@ -8,34 +8,34 @@ const controllerUsers = require("../controllers/users.controller");
 router
   .route("/games")
   .get(controllerGames.gamesGetAll)
-  .post(controllerGames.gamesAddOne);
+  .post(controllerUsers.authenticate, controllerGames.gamesAddOne);
 
 router
   .route("/games/:gameId")
   .get(controllerGames.gamesGetOne)
-  .put(controllerGames.gamesFullUpdateOne)
-  .patch(controllerGames.gamesPartialUpdateOne)
-  .delete(controllerGames.gamesDeleteOne);
+  .put(controllerUsers.authenticate, controllerGames.gamesFullUpdateOne)
+  .patch(controllerUsers.authenticate, controllerGames.gamesPartialUpdateOne)
+  .delete(controllerUsers.authenticate, controllerGames.gamesDeleteOne);
 
 router
   .route("/games/:gameId/publisher")
   .get(controllerPublishers.publisherGet)
-  .post(controllerPublishers.publisherAdd)
-  .put(controllerPublishers.publisherFullUpdate)
-  .patch(controllerPublishers.publisherPartialUpdate)
-  .delete(controllerPublishers.publisherDelete);
+  .post(controllerUsers.authenticate, controllerPublishers.publisherAdd)
+  .put(controllerUsers.authenticate, controllerPublishers.publisherFullUpdate)
+  .patch(controllerUsers.authenticate, controllerPublishers.publisherPartialUpdate)
+  .delete(controllerUsers.authenticate, controllerPublishers.publisherDelete);
 
 router
   .route("/games/:gameId/reviews")
   .get(controllerReviews.reviewsGetAll)
-  .post(controllerReviews.reviewsAdd);
+  .post(controllerUsers.authenticate, controllerReviews.reviewsAdd);
 
 router
   .route("/games/:gameId/reviews/:reviewId")
   .get(controllerReviews.reviewsGetOne)
-  .put(controllerReviews.reviewsFullUpdate)
-  .patch(controllerReviews.reviewsPartialUpdate)
-  .delete(controllerReviews.reviewsDelete);
+  .put(controllerUsers.authenticate, controllerReviews.reviewsFullUpdate)
+  .patch(controllerUsers.authenticate, controllerReviews.reviewsPartialUpdate)
+  .delete(controllerUsers.authenticate, controllerReviews.reviewsDelete);
 
 router.route("/users").post(controllerUsers.usersRegister);
 

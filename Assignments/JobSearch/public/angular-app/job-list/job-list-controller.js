@@ -21,7 +21,8 @@ function JobsController(JobDataFactory, $route) {
       JobDataFactory.addOneJob(newJob)
         .then(function (response) {
           console.log("Job saved");
-          return response.data;
+          console.log(response);
+          return response;
         })
         .catch(function (error) {
           console.log(error);

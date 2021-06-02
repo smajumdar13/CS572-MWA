@@ -4,17 +4,17 @@ function _getStarRating(stars) {
   return new Array(stars);
 }
 
-function GameController(GameDataFactory, $routeParams, $route, $location) {
+function GameController(GameDataFactory, $routeParams, $route, $location, AuthFactory) {
   const vm = this;
   let gameId = $routeParams.gameId;
   GameDataFactory.getOneGame(gameId)
     .then(function (game) {
       vm.game = game;
       vm.rating = _getStarRating(vm.game.rate);
-      vm.editedGamePrice = vm.game.price;
-      vm.editedGameMinPlayers = vm.game.minPlayers;
-      vm.editedGameMaxPlayers = vm.game.maxPlayers;
-      vm.editedGameMinAge = vm.game.minAge;
+      vm.editedGamePrice = game.price;
+      vm.editedGameMinPlayers = game.minPlayers;
+      vm.editedGameMaxPlayers = game.maxPlayers;
+      vm.editedGameMinAge = game.minAge;
     })
     .catch(function (error) {
       console.log(error);
@@ -41,6 +41,10 @@ function GameController(GameDataFactory, $routeParams, $route, $location) {
       });
     $route.reload();
   };
+
+  vm.isLoggedIn = function () {
+    return AuthFactory.auth.isLoggedIn;
+  }
 
   vm.deleteGame = function () {
     GameDataFactory.deleteGame(gameId)

@@ -20,41 +20,41 @@ module.exports.jobsGetAll = function (req, res) {
   console.log("Get the list of Jobs");
   console.log(req.query);
 
-  let offset = 0;
-  let count = 5;
-  const maxCount = 10;
+  // let offset = 0;
+  // let count = 5;
+  // const maxCount = 10;
 
-  if (req.query && req.query.offset) {
-    offset = parseInt(req.query.offset);
-  }
-  if (req.query && req.query.count) {
-    count = parseInt(req.query.count);
-  }
+  // if (req.query && req.query.offset) {
+  //   offset = parseInt(req.query.offset);
+  // }
+  // if (req.query && req.query.count) {
+  //   count = parseInt(req.query.count);
+  // }
 
-  if (isNaN(offset) || isNaN(count)) {
-    res
-      .status(400)
-      .json({ message: "QueryString Offset and Count must be a number" });
-    return;
-  }
-  if (count > maxCount) {
-    res
-      .status(400)
-      .json({ message: "QueryString Count must not exceed " + maxCount });
-  } else {
-    Job.find()
-      .skip(offset)
-      .limit(maxCount)
-      .exec(function (err, jobs) {
-        if (err) {
-          console.log("Error: ", err);
-          res.status(500).json(err);
-        } else {
-          console.log("Found jobs", jobs.length);
-          res.status(200).json(jobs);
-        }
-      });
-  }
+  // if (isNaN(offset) || isNaN(count)) {
+  //   res
+  //     .status(400)
+  //     .json({ message: "QueryString Offset and Count must be a number" });
+  //   return;
+  // }
+  // if (count > maxCount) {
+  //   res
+  //     .status(400)
+  //     .json({ message: "QueryString Count must not exceed " + maxCount });
+  // } else {
+  Job.find()
+    // .skip(offset)
+    // .limit(count)
+    .exec(function (err, jobs) {
+      if (err) {
+        console.log("Error: ", err);
+        res.status(500).json(err);
+      } else {
+        console.log("Found jobs", jobs.length);
+        res.status(200).json(jobs);
+      }
+    });
+  // }
 };
 
 module.exports.jobsGetOne = function (req, res) {
@@ -80,8 +80,8 @@ module.exports.jobsAddOne = function (req, res) {
   console.log("Add new job");
   console.log(req.body);
 
-  if (req.body && req.body.title && req.body.experience && req.body.postDate) {
-
+  if (req.body && req.body.title && req.body.description && req.body.experience
+    && req.body.skills && req.body.salary && req.body.postDate) {
 
     const newJob = {
       title: req.body.title,

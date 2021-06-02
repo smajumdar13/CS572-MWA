@@ -10,7 +10,7 @@ Search: <input ng-model="search" type="search" name="search">
   </li>
 </ul>
 <br />
-<form name="vm.jobForm" ng-submit="vm.addJob()">
+<form name="vm.jobForm" ng-submit="vm.addJob(); vm.addLocation()">
   To add a new job please fill in all the fields below:<br />
   <br />
   Title:
@@ -33,5 +33,34 @@ Search: <input ng-model="search" type="search" name="search">
   Date Posted:
   <input type="text" name="postDate" required ng-model="vm.newJobPostDate" style="color: black" /><br />
   <br />
-  <button type="submit" class="btn-success">Add Job</button><br />
+
+  <ng-form name="vm.locationForm" ng-submit="vm.addLocation()">
+
+    City:
+    <input type="text" name="city" required ng-model="vm.newCity" style="color: black" /><br />
+
+    State:
+    <input type="text" name="state" required ng-model="vm.newState" style="color: black" /><br />
+
+    Zip:
+    <input type="text" name="zip" required ng-pattern="/^(0-9){5}$/" ng-model="vm.newZip" style="color: black" /><br />
+
+    <!-- <button type="submit" class="btn-success">Add Location</button><br /> -->
+
+</form>
+
+<button type="submit" class="btn-success">Add Job</button><br />
+<!-- <form name="vm.locationForm" ng-submit="vm.addLocation()">
+  
+  City:
+  <input type="text" name="city" required ng-model="vm.newCity" style="color: black" /><br />
+
+  State:
+  <input type="text" name="state"  required ng-model="vm.newState" style="color: black" /><br />
+
+  Zip:
+  <input type="text" name="zip" required ng-pattern="/^(0-9){5}$/" ng-model="vm.newZip" style="color: black" /><br />
+
+  <button type="submit" class="btn-success">Add Location</button><br /> -->
+
 </form>

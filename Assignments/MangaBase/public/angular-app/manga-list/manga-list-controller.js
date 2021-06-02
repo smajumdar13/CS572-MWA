@@ -9,13 +9,16 @@ function MangasController(DataFactory) {
   vm.addManga = function () {
     const newManga = {
       title: vm.newMangaTitle,
-      releasedYear: vm.newMangaReleasedYear,
-      completedYear: vm.newMangaCompletedYear,
-      rating: vm.newMangaRating,
-      totalChapters: vm.newMangaTotalChapters,
-      artists: vm.newMangaArtists,
-      // publicationName: vm.newMangaPublication.name,
-      // publicationAddress: vm.newMangaPublication.address
+      rating: parseInt(vm.newMangaRating),
+      artist: vm.newMangaArtist,
+      genre: vm.newMangaGenre,
+      publisher: vm.newMangaPublisher,
+      imprint: vm.newMangaImprint,
+      magazine: vm.newMangaMagazine,
+      demographic: vm.newMangaDemographic,
+      releasedYear: parseInt(vm.newMangaReleasedYear),
+      completed: vm.newMangaCompleted,
+      tvSeries: vm.newMangaTvseries,
     };
     if (vm.mangaForm.$valid) {
       console.log(newManga);
@@ -27,6 +30,7 @@ function MangasController(DataFactory) {
         .catch(function (error) {
           console.log(error);
         });
+      $route.reload();
     }
   };
 }

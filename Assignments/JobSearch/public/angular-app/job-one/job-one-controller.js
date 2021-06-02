@@ -6,6 +6,8 @@ function JobController(JobDataFactory, $routeParams, $route, $location) {
   JobDataFactory.getOneJob(jobId)
     .then(function (job) {
       vm.job = job;
+
+      //comment the three lines below if it breaks the update code
       vm.editedJobDescription = vm.job.description;
       vm.editedJobExperience = vm.job.experience;
       vm.editedJobSkills = vm.job.skills;

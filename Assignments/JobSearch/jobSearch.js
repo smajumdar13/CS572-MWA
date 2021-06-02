@@ -4,7 +4,7 @@ const app = express();
 const path = require("path");
 const routes = require("./api/routes");
 
-app.set("port", 2000);
+app.set("port", 4000);
 
 app.use(function (req, res, next) {
   console.log(req.body);

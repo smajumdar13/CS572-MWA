@@ -10,10 +10,6 @@ function MangaController($routeParams, DataFactory, $route) {
   DataFactory.getOneManga(mangaId)
     .then(function (manga) {
       vm.manga = manga;
-      vm.rating = _getStarRating(vm.manga.rate);
-      //   vm.editedMangaReleasedYear = vm.manga.releasedYear;
-      vm.editedMangaTotalChapters = vm.manga.totalChapters;
-      //   vm.editedMangaPublication = vm.manga.publication;
     })
     .catch(function (error) {
       console.log(error);
@@ -22,12 +18,16 @@ function MangaController($routeParams, DataFactory, $route) {
   vm.updateManga = function () {
     const editedManga = {
       title: vm.manga.title,
-      releasedYear: vm.manga.releasedYear,
-      completedYear: vm.manga.completedYear,
-      rating: vm.manga.rating,
-      totalChapters: vm.editedMangaTotalChapters,
-      publication: vm.manga.publication,
-      releases: vm.manga.releases,
+      rating: parseInt(vm.editedMangaRating),
+      artist: vm.manga.artist,
+      genre: vm.editedMangaGenre,
+      publisher: vm.editedMangaPublisher,
+      imprint: vm.editedMangaImprint,
+      magazine: vm.editedMangaMagazine,
+      demographic: vm.manga.demographic,
+      releasedYear: parseInt(vm.manga.releasedYear),
+      completed: vm.editedMangaCompleted,
+      tvSeries: vm.manga.tvSeries,
     };
     DataFactory.partialUpdateManga(mangaId, editedManga)
       .then(function (manga) {
@@ -40,13 +40,13 @@ function MangaController($routeParams, DataFactory, $route) {
   };
 
   vm.deleteManga = function () {
-    MangaDataFactory.deleteManga(mangaId)
+    DataFactory.deleteManga(mangaId)
       .then(function (response) {
         console.log(response);
       })
       .catch(function (error) {
         console.log(error);
       });
-    $route.reload("/api/manga");
+    $route.reload();
   };
 }

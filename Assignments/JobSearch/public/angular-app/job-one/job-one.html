@@ -6,7 +6,10 @@
     Experiences: {{vm.job.experience}}</br>
     Skills:{{vm.job.skills}}</br>
     Salary: {{vm.job.salary | currency}}</br>
-    Date Posted: {{vm.job.postDate | date: dd.MM.yyyy}}
+    Date Posted: {{vm.job.postDate | date: dd.MM.yyyy}}</br>
+    City: {{vm.location.city}}</br>
+    State: {{vm.location.state}}</br>
+    Zip: {{vm.location.zip}}</br>
   </p>
 
   <form name="vm.updateJobForm" ng-submit="vm.updateJob()">
@@ -25,7 +28,22 @@
   </form>
   <br />
 
-  <br /> <br />
-  <button class="btn-secondary"><a href="../../index.html">Go to MainPage</a></button>
+  <ng-form name="vm.updateLocationForm" ng-submit="vm.updateLocation()">
+
+    City:
+    <input type="text" name="city" required ng-model="vm.editedCity" style="color: black" /><br />
+
+    State:
+    <input type="text" name="state" required ng-model="vm.editedState" style="color: black" /><br />
+
+    Zip:
+    <input type="text" name="zip" required ng-pattern="/^(0-9){5}$/" ng-model="vm.neditedZip"
+      style="color: black" /><br />
+
+    <button type="submit" class="btn-success">Add/Edit Location</button><br />
+
+    </form>
+    <br /> <br />
+    <button class="btn-secondary"><a href="../../index.html">Go to MainPage</a></button>
 
 </div>
