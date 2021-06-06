@@ -1,0 +1,190 @@
+June 02, 2021
+
+NodeJS - platform to run javascript
+
+V8 - chrome engine to run JS
+
+Event driven - programming style based on responding to events. Eg: userClick, mouseHover, etc.
+			   => callbacks (event-handlers), on loading do this, on delete do this.....
+			   => programming using callbacks, based on reacting to events, and register certain events to callbacks
+			   => event(firing): finding a data in db, register: registering the event(.then) {linking the event to the callback}, 
+			      {calling the app triggers routes, which connects to the controllers} happens before the app listens to the port
+			   => angular passes the event to node, node to express, express links to controller, controller finds the method, 
+			      registers the event, linking to database(execution) happens after that.
+			   => hardening: checking errors and results
+			   => based on publisher-subscriber pattern: piece of code generating info, and another piece of code consuming the info.
+			      {producer-consumer]
+			   => event-driven: one form on middleware
+			   
+running node in cmd: c:\>node
+	called REPL: Reading code, Evaluating, Printing result, and Looping back (Read Evaluate Print Loop)
+	
+Event loop: handles asynchronous calls, is single-threaded, also event driven, uses libuv. attaching listeners and callback functions when certain events fire.
+			checks events, and once gets the output, calls callback.
+			
+asynchronous: when an event runs before another event finishes
+non-blocking: specifically used for IO operations, while reading a file, or writing a file to harddrive. An IO operation that runs asynchronously. reading data from HDD.
+
+ECMA: v8, spidermonkey. node uses v8
+
+Parallelism: 
+Concurrency: illusion of parallelism. running things interleaved. parallelism before multiple cores and processors. 
+Asynchronous: impression of concurrency, or parallel tasks happening. basically doing work outside of the main thread that's running. 
+don't wait for the code to finish, or the main thread to stop. 
+makes node less resource-demanding on server-side.
+all non-blocking codes are done by libuv
+
+
+timers: setTimeout
+pending callbacks: least important callbacks
+idle queue: internal node usage
+poll: most important callbacks: IO operations, files, databases, etc.
+check: setImmediate: asynchronous, but runs immediately
+close callbacks: close events
+
+when there are memory hogging events, implement "maximum callbacks per queue". to prevent queue starvation. limiting how many operations can run in each queue.
+to avoid a callback from preventing other callbacks to run
+
+actual find being done by libuv. find callback done after the find is done.
+
+once the whole list of queue is done, and comes back to it's original starting position, it's called a tick -> from timers to close callback and back again.
+
+clearTimeout: before timeout starts, or after, cannot be called in between. before: cancels the callback in the queue, after: no callback in the queue anyway
+
+MicroTask Queue: managed by v8, can be used as next tick queue. next tick queue is processed before micro task queue. 
+
+next tick queue can cause the loop to starve, but since they are limited, the callbacks in the loop do not starve each other.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+June 3, 2021
+
+When a position says FullStack developer?
+-> DB, Webservice, frontend
+-> backend and frontend merged into one
+-> expected to know both backend and frontend coding
+-> alternative: backend and frontend
+-> backend: headless application
+-> frontend: head of the application
+-> 
+
+Maharishi - prevent the birth of an enemy before you even have to fight them
+
+Legacy applications - 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Software developers vs Software engineers: Academic difference, one can develop a software, the other also checks the structure, architecture and other
+validations.
+
+SEMVER - Major.Minor.Patch
+"angular-route": "^1.4.0"
+~ -> [1.2.3 - ~1.3.0) 1.2.3 excluding 1.3.0      -> patch fixes
+^ -> [ 1.2.3 - 2.0.0 ]  1.2.3 to 2.0.0           -> minor
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+change in major: no extending compatibility
+change in minor: extended backwards compatibility
+change in patch: minor bug fixes
+
+V8 single threaded, if micro task queue is running, node is not running.
+micro tasks queue stores callbacks
+
+Game.findById(gameId).exec(onGameGet);
+
+const onGameGet = function((resolve, reject){
+	
+});
+
+next tick has higher priority than micro tasks, and is therefore referred to as priority queue
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+June 4, 2021
+
+Micro task queue added to Node 11 and was mentioned as experimental.
+
+Architecture of MEAN Stack applications
+Browsers
+MongoDB
+
+User makes a request to browser -> URL # -> Browser creates Render Process -> Render process has main thread
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Main Process constitutes UI thread, Network thread, and Storage thread. Network thread (fetches HTML, JS, localfiles), checks where the address is (web or local), Storage thread then checks if it is available in the cache. Then the information is sent to the Main thread in the Render process.
+
+In the main thread of the render process, DOM tree is created, then Style tree is created. Then a Layout tree is created. DOM tree is combined with Style tree. And not everything is visible on the screen as it depends on the dom and style trees. Whatever is visible at the end is the Layout tree.
+
+with HTTP2 and HTTPS there is no limit how many products can be created
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MEAN Stack Architecture and prototyping:
+
+- Database driven application (Database MongoDB)
+
+- Design a static UI page (HTML and CSS)
+- Create a database based on the UI design contents
+- Create a Schema in relation to the UI
+- Design an Angular JS design for the app
+- Completing Angular templates and getting data from backend
+
+
+design db, create db, create api, consume data, create ui
+
+mongodb replica, mongodb sharding
+
+Dynamic TS and CRUD
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+June 5, 2021
+
+Computationally intense: child_process
+(node child_process)
+
+Node is less resource demanding, but with many child processes, it goes back to same web server, getting slow.
+
+Libuv intended for non-blocking I/O.
+
+hack to use computationally intense calculations: child_process, with a callback
+
+Async and non-blocking: 
+
+Not all asyncs are non-blocking, but all non-blocking are asynchronous
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MongoDB:
+A request comes to mongoDB. Primary DB has mongo driver, which accepts the request. Primary DB has an actual datastore and a operation log. The request is applied to the datastore, and registered into the operation log. Secondary DB also has a mongo driver, datastore, and operation log. Then secondary requests primary for changes. Primary checks the operation log, and sends the change to secondary. The change is sent to mongodb in secondary DB, and put in the secondary datastore, and logged into the secondary operation log as well. 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# ONE REPLICA SET IS A NODE
+Replica set of Nodes: 
+
+set of primary and secondary nodes. Types of replica set nodes: Regular node(Primary and Secondary). Could have multiple secondary nodes. When primary goes down, multiple secondary nodes could end up in a tie on running. During that time, Arbitrator/Arbitar Node(used for voting) is used to break ties while voting. Delayed node (also called the disaster node) is also a secondary node, that's a little bit delayed, i.e. gets updated after everyone, and is set behind everyone. Worst case scenario. If all fail, the delayed node stays alive. Update could be like every 5 hours. And the node is set up in a very secure environment. Hidden node is not really intended for the database, but for analytics (data analysis). 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Replication Read Preferences: 
+	Read from Primary,
+	Read from Secondary, 
+	Read from nearest node.
+	
+Replication Write Concerns: 
+W:0, W:1, and W:2 => 
+	W:0 - return success immediately
+	W:1 - return success only after successful write to Primary
+	W:2 - return success after successful write to primary and at least one secondary.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+No load balancing as all the request goes to the primary. Secondary does not take requests, only used as a backup.
+
+Operation log writes down what operation happens, and transfers the operations to the secondary DB, so the whole primary DB does not need to be copied as a backup. The operation log registers all the operations done in the primary db into the secondary db. Due to this, the restore is slower as the db has to reverse all the operations in reverse order.  
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+const MongoClient = require("mongodb").MongoClient;
+const client = new MongoClient("mongodb://localhost:30010, mongodb://localhost:30020, mongodb://localhost:30030/meanGamesDB?w=1&ReadPreference = secondary");
+// must have at least one secondary node
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Sharding: 
+Adding and Removing shards: on adding an empty shard, migrate some of the data from other shards, and once everything is added to the new shard, it is made online.
+for removing, take the data from the shard, and distribute to other shards, and at the end, decommission the shard.
+
+The issue is, these shards are hardware machines, and for scalability, require more machines.
+=> the whole sharding is one replica. The replica is called node. 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Shard Key: One document being stored, itself, can be split into multiple shards. The data being stored has a hash function, which ends up splitting the code into multiple shards, and ends up going into different machines, based on a Shard Key (doc._id). Shard key is generated depending on the number of shards the data is split into. 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Shard in a cluster goes down -> the node failed. 
+

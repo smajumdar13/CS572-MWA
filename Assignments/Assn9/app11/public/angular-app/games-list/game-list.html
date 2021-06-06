@@ -1,14 +1,21 @@
 <h1>{{vm.title}}</h1>
 
+<form name="vm.searchForm" ng-submit="vm.searchGame()">
+    Search: <input type="text" name="search" required ng-model="vm.gameTitle"/>
+    <button type="submit" class="btn-success">Search Game</button>
+</form>
+
 <ul>
     <li ng-repeat="game in vm.games">
         <a ng-href="#/game/{{game._id}}">{{game.title}}</a>
     </li>
 </ul>
 
-<button class="btn-primary" ng-click="vm.previous()">Previous</button> &nbsp;&nbsp;&nbsp;
-<button class="btn-primary" ng-click="vm.next()">Next</button><br /><br />
-
+<button class="btn-success" ng-disabled="vm.pageButtonDisabled(-1)" ng-click="vm.paginate(-1)">Previous</button>&nbsp;&nbsp;
+    <button class="btn-success" ng-disabled="vm.pageButtonDisabled(1)" ng-click="vm.paginate(1)">Next</button>
+    <br /><br />
+    Page {{vm.currentPage}} of {{vm.totalPages}}
+    
 <div ng-if="vm.isLoggedIn()">
     <form name="vm.gameForm" ng-submit="vm.addGame()">
 

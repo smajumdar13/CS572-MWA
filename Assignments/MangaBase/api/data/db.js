@@ -1,44 +1,48 @@
 const mongoose = require("mongoose");
-require("./manga-model.js");
+//Require all model
+require("./users-model");
+require("./manga-model");
 const dbName = "mangaBaseDB";
 const dbURL = "mongodb://localhost:27017/" + dbName;
 
-// this is needed to connect
-mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// Signal interrupt
+mongoose.connect(dbURL,
+    { useNewUrlParser: true, useUnifiedTopology: true });
+
 process.on("SIGINT", function () {
-  mongoose.connection.close(function () {
-    console.log("Mongoose disconnected by application termination");
-    process.exit(0);
-  });
+    mongoose.connection.close(function () {
+        console.log("Mongoose disconnected by app termination.");
+        process.exit(0);
+    });
 });
 
-// Signal termination
 process.on("SIGTERM", function () {
-  mongoose.connection.close(function () {
-    console.log("Mongoose disconnected by application termination");
-    process.exit(0);
-  });
+    mongoose.connection.close(function () {
+        console.log("Mongoose disconnected by app termination.");
+        process.exit(0);
+    });
 });
 
-// Signal restart
 process.once("SIGUSR2", function () {
-  mongoose.connection.close(function () {
-    console.log("Mongoose disconnected by app restart");
-    process.kill(process.pid, "SIGUSR2");
-  });
+    mongoose.connection.close(function () {
+        console.log("Mongoose disconnected by app restarted.");
+        process.kill(process.pid, "SIGUSR2");
+    });
 });
 
-// this is logging info
+//This is loggin info
 mongoose.connection.on("connected", function () {
-  console.log("Mongoose connected to " + dbURL);
+    console.log("Mongoose connected to " + dbURL);
 });
 
 mongoose.connection.on("disconnected", function () {
-  console.log("Mongoose disconnected");
+    console.log("Mongoose disconnected");
 });
 
 mongoose.connection.on("error", function (error) {
-  console.log("Mongoose connection error " + error);
+    console.log("Mongoose connected error", error);
 });
+
+
+
+

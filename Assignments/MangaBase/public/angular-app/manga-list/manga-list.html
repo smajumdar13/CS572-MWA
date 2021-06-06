@@ -1,34 +1,45 @@
+<h1>{{vm.title}}</h1>
+
 <ul>
-  <li ng-repeat="manga in vm.mangas | orderBy: 'title'"
-    style="list-style-image: url(../../images/bullet.png); margin-bottom: 14px">
-    <a ng-href="#/manga/{{manga._id}}"> {{ manga.title }}: {{manga.artist}} </a>
-  </li>
+    <li ng-repeat="manga in vm.manga">
+        <a ng-href="#/manga/{{manga._id}}">{{manga.title}}</a>
+    </li>
 </ul>
-<form name="vm.mangaForm" ng-submit="vm.addManga()">
-  To add a new manga please fill in all the fields below:<br />
 
-  Title:
-  <input type="text" name="title" required ng-model="vm.newMangaTitle" style="color: black" /><br />
-  Rating:
-  <input type="text" name="rating" required ng-model="vm.newMangaRating" style="color: black" /><br />
-  Artist:
-  <input type="text" name="artist" required ng-model="vm.newMangaArtist" style="color: black" /><br />
-  Genre:
-  <input type="text" name="genre" required ng-model="vm.newMangaGenre" style="color: black" /><br />
-  Publication:
-  <input type="text" name="publisher" required ng-model="vm.newMangaPublisher" style="color: black" /><br />
-  Imprint:
-  <input type="text" name="imprint" required ng-model="vm.newMangaImprint" style="color: black" /><br />
-  Magazine:
-  <input type="text" name="magazine" required ng-model="vm.newMangaMagazine" style="color: black" /><br />
-  Demographic:
-  <input type="text" name="demographic" required ng-model="vm.newMangaDemographic" style="color: black" /><br />
-  Released Year:
-  <input type="text" name="year" required ng-model="vm.newMangaReleasedYear" style="color: black" /><br />
-  Completed:
-  <input type="text" name="completed" required ng-model="vm.newMangaCompleted" style="color: black" /><br />
-  TV Series:
-  <input type="text" name="tvSeries" required ng-model="vm.newMangaTvseries" style="color: black" /><br />
+<!-- <button class="btn-primary" ng-click="vm.previous()">Previous</button> &nbsp;&nbsp;&nbsp;
+<button class="btn-primary" ng-click="vm.next()">Next</button><br /><br /> -->
 
-  <button type="submit" class="btn-success">Add Manga</button><br />
-</form>
+<div ng-if="vm.isLoggedIn()">
+    <form name="vm.mangaForm" ng-submit="vm.addManga()">
+
+        To add a new manga please fill in all the fields below:<BR />
+
+        Title:
+        <input type="text" name="title" required ng-model="vm.newMangaTitle" style="color: black" /><br />
+        Rating:
+        <input type="text" name="rating" required ng-model="vm.newMangaRating" style="color: black" /><br />
+        Artist:
+        <input type="text" name="artist" required ng-model="vm.newMangaArtist" style="color: black" /><br />
+        Genre:
+        <input type="text" name="genre" required ng-model="vm.newMangaGenre" style="color: black" /><br />
+        Publication:
+        <input type="text" name="publisher" required ng-model="vm.newMangaPublisher" style="color: black" /><br />
+        Imprint:
+        <input type="text" name="imprint" required ng-model="vm.newMangaImprint" style="color: black" /><br />
+        Magazine:
+        <input type="text" name="magazine" required ng-model="vm.newMangaMagazine" style="color: black" /><br />
+        Demographic:
+        <input type="text" name="demographic" required ng-model="vm.newMangaDemographic" style="color: black" /><br />
+        Released Year:
+        <input type="text" name="year" required ng-model="vm.newMangaReleasedYear" style="color: black" /><br />
+        Completed:
+        <input type="text" name="completed" required ng-model="vm.newMangaCompleted" style="color: black" /><br />
+        TV Series:
+        <input type="text" name="tvSeries" required ng-model="vm.newMangaTvseries" style="color: black" /><br />
+
+
+        <button type="submit" class="btn-success">Add Manga</button><BR />
+
+    </form>
+
+</div>

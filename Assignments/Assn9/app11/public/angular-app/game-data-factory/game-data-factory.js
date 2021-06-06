@@ -6,12 +6,18 @@ function GameDataFactory($http) {
         getOneGame: getOneGame,
         addOneGame: addOneGame,
         replaceOneGame: replaceOneGame,
-        previousPage: previousPage,
-        nextPage: nextPage
     }
-
-    function getAllGames() {
-        return $http.get("/api/games").then(complete).catch(failed);
+    
+    function getAllGames(query1,query2,query3){
+        if(query1 && query2 && query3){
+            return $http.get("/api/games?search="+query1+"&&currentPage="+query2+"&&pageSize="+query3).then(complete).catch(failed);
+        }else if(query1 && query2){
+            return $http.get("/api/games?currentPage="+query1+"&&pageSize="+query2).then(complete).catch(failed); 
+        }else if(query1){
+            return $http.get("/api/games?search="+query1).then(complete).catch(failed); 
+        }else{
+            return $http.get("/api/games").then(complete).catch(failed); 
+        }      
     }
 
     function getOneGame(id) {

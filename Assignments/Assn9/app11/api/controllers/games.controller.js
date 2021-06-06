@@ -32,52 +32,70 @@ const runGeoQuery = function (req, res) {
 }
 
 
-module.exports.gamesGetAll = function (req, res) {
-    console.log("Get the list of Games");
-    console.log(req.query);
+module.exports.gamesGetAll=function(req,res){
+    console.log("Get the Games");
 
-    if (req.query && req.query.lat && req.query.lng) {
-        runGeoQuery(req, res);
-        return;
+    const currentPage=(req.query.currentPage)?parseInt(req.query.currentPage):1;
+    const pageSize=(req.query.pageSize)?parseInt(req.query.pageSize):5;
+    const search=req.query.search;
 
-    }
-    // const maxCount=10;
-    const defaultOffset = 0;
-    const defaultcount = 10;
-    let offset = defaultOffset;
-    let count = defaultcount;
-
-    if (req.query && req.query.offset) {
-        offset = parseInt(req.query.offset);
-
+    if(isNaN(currentPage) && isNaN(pageSize)){
+        response.status=404;
+        response.message={"message":"QueryString currentPage and pageSize must be Number."};
+        
     }
 
-    if (req.query && req.query.count) {
-        count = parseInt(req.query.count);
+    if(search){
 
+        const offset=(currentPage-1)*pageSize;
+        Game.find({"title":search}).skip(offset).limit(pageSize).exec(function(err,games){
+                
+            if(err){
+                response,status=500,
+                res.status(500).json({"Error":err});
+            }else{
+                total=0;
+                Game.countDocuments( {"title":search}, function(err, result){
+                    console.log(result);
+
+                    if(err){
+                        res.send(err)
+                    }
+                    else{
+                       total=result;
+                    }
+                    
+                    res.status(200).json({"games":games,"total":result});
+                })
+            }
+        });
+
+    }else{
+
+        const offset=(currentPage-1)*pageSize;
+        Game.find().skip(offset).limit(pageSize).exec(function(err,games){
+            if(err){
+                console.log("Error finding games"); 
+                res.status(500).json({"Error":err});
+            }else{
+                total=0;
+                console.log("test");
+                Game.countDocuments({}, function(err, result){
+                    console.log(result);
+
+                    if(err){
+                        res.send(err)
+                    }
+                    else{
+                       total=result;
+                    }
+                    res.status(200).json({"games":games,"total":result});
+            
+               })
+                
+            }
+        });
     }
-
-    //This is the type check
-    if (isNaN(offset) || isNaN(count)) {
-        res.status(400).json({ "message:": "QueryString offset and count should be numbers." });
-    }
-
-    //Limit check
-    // if (count > maxCount) {
-    //     response.status(400).json({ "message": "QueryString count cannot exceed " + maxCount });
-
-    // }
-
-    Game.find().sort({ title: "asc" }).skip(offset).limit(count).exec(function (err, games) {
-
-        if (err) {
-            console.log("Error finding games");
-            res.status(500).json({ "Error": err });
-        } else {
-            console.log("Found games", games.length);
-            res.status(200).json(games);
-        }
-    });
 };
 
 module.exports.gamesGetOne = function (req, res) {

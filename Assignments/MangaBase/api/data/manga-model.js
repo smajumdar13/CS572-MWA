@@ -45,4 +45,4 @@ const mangaSchema = new mongoose.Schema({
 });
 
 mongoose.model("Manga", mangaSchema, "manga");
-mongoose.model("Review", reviewSchema, "reviews");
+mongoose.model("Review", reviewSchema);

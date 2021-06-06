@@ -12,7 +12,7 @@ module.exports.reviewsGetAll = function (req, res) {
     });
 };
 
-module.exports.reviewGetOne = function (req, res) {
+module.exports.reviewsGetOne = function (req, res) {
   console.log("Get one review for a manga");
   const mangaId = req.params.mangaId;
   const reviewId = req.params.reviewId;
@@ -25,7 +25,7 @@ module.exports.reviewGetOne = function (req, res) {
   });
 };
 
-module.exports.reviewAddOne = function (req, res) {
+module.exports.reviewsAddOne = function (req, res) {
   const mangaId = req.params.mangaId;
 
   Manga.findById(mangaId, function (err, manga) {
@@ -52,7 +52,7 @@ module.exports.reviewAddOne = function (req, res) {
   });
 };
 
-module.exports.reviewFullUpdateOne = function (req, res) {
+module.exports.reviewsFullUpdateOne = function (req, res) {
   const mangaId = req.params.mangaId;
   const reviewId = req.params.reviewId;
   Manga.findById(mangaId, function (err, manga) {
@@ -78,7 +78,7 @@ module.exports.reviewFullUpdateOne = function (req, res) {
   });
 };
 
-module.exports.reviewPartialUpdateOne = function (req, res) {
+module.exports.reviewsPartialUpdateOne = function (req, res) {
   const reviewId = req.params.reviewId;
   const mangaId = req.params.mangaId;
 
@@ -111,7 +111,7 @@ module.exports.reviewPartialUpdateOne = function (req, res) {
   });
 };
 
-module.exports.reviewDeleteOne = function (req, res) {
+module.exports.reviewsDeleteOne = function (req, res) {
   const reviewId = req.params.reviewId;
   const mangaId = req.params.mangaId;
 

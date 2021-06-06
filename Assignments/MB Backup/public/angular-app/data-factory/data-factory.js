@@ -7,6 +7,12 @@ function DataFactory($http) {
     addManga: addManga,
     partialUpdateManga: partialUpdateManga,
     deleteManga: deleteManga,
+
+    // getAllReviews: getAllReviews,
+    // getOneReview: getOneReview,
+    // addReview: addReview,
+    // partialUpdateReview: partialUpdateReview,
+    // deleteReview: deleteReview
   };
   function getAllMangas() {
     return $http.get("/api/manga").then(complete).catch(failed);
@@ -32,6 +38,30 @@ function DataFactory($http) {
       .then(complete)
       .catch(failed);
   }
+  // function getAllReviews(id) {
+  //   return $http.get("/api/manga/" + id + "/reviews").then(complete).catch(failed);
+  // }
+  // function getOneReview(id, reviewId) {
+  //   return $http
+  //     .get("/api/manga/" + id + "/reviews/" + reviewId)
+  //     .then(complete)
+  //     .catch(failed);
+  // }
+  // function addReview(id, review) {
+  //   return $http.post("/api/manga" + id + "/reviews", review).then(complete).catch(failed);
+  // }
+  // function partialUpdateReview(id, reviewId, review) {
+  //   return $http
+  //     .put("/api/manga/" + id + "/reviews/" + reviewId, review)
+  //     .then(complete)
+  //     .catch(failed);
+  // }
+  // function deleteReview(id, reviewId) {
+  //   return $http
+  //     .delete("/api/manga/" + id + "/reviews/" + reviewId)
+  //     .then(complete)
+  //     .catch(failed);
+  // }
   function complete(response) {
     console.log(response.data);
     return response.data;

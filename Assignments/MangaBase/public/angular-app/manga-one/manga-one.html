@@ -1,50 +1,48 @@
-<h1>{{vm.manga.title}}</h1>
+<p class="heading">
+<h1 class="mangaTitle">{{vm.manga.title}}</h1>
+<manga-rating stars={{vm.rating}}></manga-rating>
+</p>
+<p>
+    Artist: {{vm.manga.artist}}<br />
+    Genre: {{vm.manga.genre}}<br />
+    Publication: {{vm.manga.publisher}} <br />
+    Imprint: {{vm.manga.imprint}} <br />
+    Magazine: {{vm.manga.magazine}} <br />
+    Demographic: {{vm.manga.demographic}} <br />
+    Released Year: {{vm.manga.releasedYear}} <br />
+    Completed: {{vm.manga.completed}}<br />
+    TV Series available? {{vm.manga.tvSeries}} <br />
 
-Rating: {{vm.manga.rating}} <br />
-Artist: {{vm.manga.artist}}<br />
-Genre: {{vm.manga.genre}}<br />
-Publication: {{vm.manga.publisher}} <br />
-Imprint: {{vm.manga.imprint}} <br />
-Magazine: {{vm.manga.magazine}} <br />
-Demographic: {{vm.manga.demographic}} <br />
-Released Year: {{vm.manga.releasedYear}} <br />
-Completed: {{vm.manga.completed}}<br />
-TV Series available? {{vm.manga.tvSeries}} <br />
+    Reviews:
 
-Reviews:
-
-<li ng-repeat="review in vm.manga.reviews" style="list-style-type: none">
-  &nbsp;&nbsp;&nbsp;"{{review.review}}" : {{review.name}} ({{review.date}})<br />
-  <div class="space"></div>
-</li>
+    <li ng-repeat="review in vm.manga.reviews" style="list-style-type: none; font-size:1.2vw; padding-left: 2vw">
+        "<em>{{review.review}}"</em> - {{review.name}} ({{review.date}})<br />
+        <div class="space"></div>
+    </li>
+</p>
 <br />
-<br />
-<button class="btn-primary"><a href="../../index.html">Go Back</a></button>
-<br />
-<br />
-<form name="vm.updateMangaForm" ng-submit="vm.updateManga()">
-
-  Please fill in the required fields that need update: <br />
-
-  Rating:
-  <input type="text" name="rating" required ng-model="vm.editedMangaRating" style="color: black" /><br />
-  Genre:
-  <input type="text" name="genre" required ng-model="vm.editedMangaGenre" style="color: black" /><br />
-  Publication:
-  <input type="text" name="publisher" required ng-model="vm.editedMangaPublisher" style="color: black" /><br />
-  Imprint:
-  <input type="text" name="imprint" required ng-model="vm.editedMangaImprint" style="color: black" /><br />
-  Magazine:
-  <input type="text" name="magazine" required ng-model="vm.editedMangaMagazine" style="color: black" /><br />
-  Completed:
-  <input type="text" name="completed" required ng-model="vm.newMangaCompleted" style="color: black" /><br />
-
-  <button type="submit" class="btn-success">Update Manga</button> &ensp;
-</form>
-
-<button type="submit" class="btn-danger" ng-click="vm.deleteManga(vm.manga._id)">Delete Manga</button>
-
-<br />
+<button class="btn-secondary"><a href="../#/manga">Go Back</a></button>
 <br />
 
+
+<div ng-if="vm.isLoggedIn()">
+    <form name="vm.updateMangaForm" ng-submit="vm.updateManga()">
+        Please fill in the required fields that need update: <br />
+        Rating:
+        <input type="text" name="rating" required ng-model="vm.editedMangaRating" style="color: black" /><br />
+        Genre:
+        <input type="text" name="genre" required ng-model="vm.editedMangaGenre" style="color: black" /><br />
+        Publication:
+        <input type="text" name="publisher" required ng-model="vm.editedMangaPublisher" style="color: black" /><br />
+        Imprint:
+        <input type="text" name="imprint" required ng-model="vm.editedMangaImprint" style="color: black" /><br />
+        Magazine:
+        <input type="text" name="magazine" required ng-model="vm.editedMangaMagazine" style="color: black" /><br />
+        Completed:
+        <input type="text" name="completed" required ng-model="vm.editedMangaCompleted" style="color: black" /><br />
+
+        <button type="submit" class="btn-success">Update Manga</button> &ensp;<button type="submit" class="btn-danger"
+            ng-click="vm.deleteManga(vm.manga._id)">Delete Manga</button>
+
+    </form>
 </div>

@@ -1,0 +1,61 @@
+<h1>{{vm.manga.title}}</h1>
+<manga-rating stars={{vm.rating}}></manga-rating>
+<!-- Rating: {{vm.manga.rating}} <br /> -->
+<p>
+  Artist: {{vm.manga.artist}}<br />
+  Genre: {{vm.manga.genre}}<br />
+  Publication: {{vm.manga.publisher}} <br />
+  Imprint: {{vm.manga.imprint}} <br />
+  Magazine: {{vm.manga.magazine}} <br />
+  Demographic: {{vm.manga.demographic}} <br />
+  Released Year: {{vm.manga.releasedYear}} <br />
+  Completed: {{vm.manga.completed}}<br />
+  TV Series available? {{vm.manga.tvSeries}} <br />
+
+  Reviews:
+
+  <li ng-repeat="review in vm.manga.reviews" style="list-style-type: none">
+    &nbsp;&nbsp;&nbsp;"{{review.review}}" : {{review.name}} ({{review.date}})<br />
+    <div class="space"></div>
+  </li>
+</p>
+<br />
+<button class="btn-primary"><a href="../../index.html">Go Back</a></button>
+<br />
+<div ng-if="vm.isLoggedIn()">
+  <form name="vm.updateMangaForm" ng-submit="vm.updateManga()">
+
+    Please fill in the required fields that need update: <br />
+
+    Rating:
+    <input type="text" name="rating" required ng-model="vm.editedMangaRating" style="color: black" /><br />
+    Genre:
+    <input type="text" name="genre" required ng-model="vm.editedMangaGenre" style="color: black" /><br />
+    Publication:
+    <input type="text" name="publisher" required ng-model="vm.editedMangaPublisher" style="color: black" /><br />
+    Imprint:
+    <input type="text" name="imprint" required ng-model="vm.editedMangaImprint" style="color: black" /><br />
+    Magazine:
+    <input type="text" name="magazine" required ng-model="vm.editedMangaMagazine" style="color: black" /><br />
+    Completed:
+    <input type="text" name="completed" required ng-model="vm.editedMangaCompleted" style="color: black" /><br />
+
+    <button type="submit" class="btn-success">Update Manga</button> &ensp;<button type="submit" class="btn-danger"
+      ng-click="vm.deleteManga(vm.manga._id)">Delete Manga</button>
+
+  </form>
+
+  <!-- <br />
+  <form name="vm.updateMangaReviewForm" ng-submit="vm.updateReview()">
+
+    Please add a review here: <br />
+
+    Name:
+    <input type="text" name="name" required ng-model="vm.newReviewName" style="color: black" /><br />
+    Review:
+    <input type="text" name="review" required ng-model="vm.newReviewReview" style="color: black" /><br />
+    Date:
+    <input type="text" name="date" required ng-model="vm.newReviewDate" style="color: black" /><br />
+    <button type="submit" class="btn-success">Add/Edit review</button> &ensp;
+  </form> -->
+</div>
