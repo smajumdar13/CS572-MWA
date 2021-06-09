@@ -1,0 +1,16 @@
+4. Outer depends on Inner:
+
+While developing a MEAN stack web application, it became evident that the result that is visible to the user on the UI(frontend) part is always based on the methods and functions coded on the backend part of the application. With an organized and ordered backend, it is easy to connect the functions to the events triggered by the user using the application, and print a favorable result. If the backend code is not organized, and is not properly debugged, the user is not able to get the right result from the event the user triggers. Therefore, the Outer depends on the Inner, as the inner determines the functioning of the outer.
+
+
+
+Enjoy Greater Efficiency (Do Less) and Accomplish More
+
+While developing a MEAN stack application, the codes were organized in respective files, and ordered into structured sub-folders. 
+
+
+
+
+11. Being is the Basis of Thought, Thought Leads to Action, Action Leads to Achievement, Achievement Leads to Fulfillment.
+
+During the span of this course, I designed and developed 5 MEAN stack applications. While developing them, after being guided on the first application by my Professor, I began working on a second one on my own. It took some time to understand the first application, but the second one came easily to me once I had an idea on what I was going to work on. Working with the second one, there were still some challenges as the way of implementation were similar but not same, and I had to implement my own ideas as well, and integrate them into what I already knew. These actions finally led to the completion of the application, and I am proud to say that I accomplished my task of designing a user UI for my application with all the ideas and knowledge taught in the class, implementing a full-stack working Single-Page web application. Therefore, completing the thought process of "Being is the Basis of Thought, Thought Leads to Action, Action Leads to Achievement, Achievement Leads to Fulfillment."

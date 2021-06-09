@@ -18,6 +18,7 @@ Event driven - programming style based on responding to events. Eg: userClick, m
 			   
 running node in cmd: c:\>node
 	called REPL: Reading code, Evaluating, Printing result, and Looping back (Read Evaluate Print Loop)
+	also called Node shell
 	
 Event loop: handles asynchronous calls, is single-threaded, also event driven, uses libuv. attaching listeners and callback functions when certain events fire.
 			checks events, and once gets the output, calls callback.
@@ -25,7 +26,7 @@ Event loop: handles asynchronous calls, is single-threaded, also event driven, u
 asynchronous: when an event runs before another event finishes
 non-blocking: specifically used for IO operations, while reading a file, or writing a file to harddrive. An IO operation that runs asynchronously. reading data from HDD.
 
-ECMA: v8, spidermonkey. node uses v8
+ECMA: v8, spidermonkey. node uses v8 ecma script 5 and 6. 
 
 Parallelism: 
 Concurrency: illusion of parallelism. running things interleaved. parallelism before multiple cores and processors. 
@@ -113,7 +114,7 @@ User makes a request to browser -> URL # -> Browser creates Render Process -> Re
 
 In the main thread of the render process, DOM tree is created, then Style tree is created. Then a Layout tree is created. DOM tree is combined with Style tree. And not everything is visible on the screen as it depends on the dom and style trees. Whatever is visible at the end is the Layout tree.
 
-with HTTP2 and HTTPS there is no limit how many products can be created
+with HTTP2 and HTTPS there is no limit how many processes can be created
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 MEAN Stack Architecture and prototyping:
@@ -174,7 +175,7 @@ No load balancing as all the request goes to the primary. Secondary does not tak
 Operation log writes down what operation happens, and transfers the operations to the secondary DB, so the whole primary DB does not need to be copied as a backup. The operation log registers all the operations done in the primary db into the secondary db. Due to this, the restore is slower as the db has to reverse all the operations in reverse order.  
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 const MongoClient = require("mongodb").MongoClient;
-const client = new MongoClient("mongodb://localhost:30010, mongodb://localhost:30020, mongodb://localhost:30030/meanGamesDB?w=1&ReadPreference = secondary");
+const client = new MongoClient("mongodb://localhost:30010, mongodb://localhost:30020, mongodb://localhost:30030/meanGamesDB?w=1&ReadPreference=secondary");
 // must have at least one secondary node
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Sharding: 
@@ -187,4 +188,104 @@ The issue is, these shards are hardware machines, and for scalability, require m
 Shard Key: One document being stored, itself, can be split into multiple shards. The data being stored has a hash function, which ends up splitting the code into multiple shards, and ends up going into different machines, based on a Shard Key (doc._id). Shard key is generated depending on the number of shards the data is split into. 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Shard in a cluster goes down -> the node failed. 
+
+
+Express is a middleware routing and web framework. Middleware functions are functions that have access to request object, response object and next middleware function in the application's request-response cycle. Middlewares can perform following tasks: execute any code, make changes to request and response objects, end request-response cycle, and call next middleware in the stack. 
+
+Modules are how one file is loaded into another. When module1 requires module2, module2 has to define that it exports the result. So module1 reads:
+var m2 = require("./module2");
+
+and m2 should have:
+var a = 1;
+module.exports.a = a;
+or as exports.a = a;
+
+can also write a whole function as 
+module.exports.m2 = function(){
+
+}
+
+node package manager (npm): 
+provides online repositories for node.js packages/modules
+provides command line utility to install packages, and does version and dependency management of the packages
+
+modules are like JS packages that include a set of pre-defined functions
+need to use require() with the module name in parantheses to call the module
+
+JavaScript is typeless language
+
+MEAN - MongoDB, Express, AngularJS, NodeJS
+Database Driven Application: 
+Event Driven Application: 
+
+
+Callbacks help to keep the code DRY, implement better abstraction, and improve code readability and maintainability
+
+Callback Hell: when there are many nested callbacks, and the code is hard to maintain. Pyramid of Doom- intensively nested, unreadable and unmanageable callbacks, which makes the code harder to read and debug. Caused by improper implementation of asynchronous logic.
+
+For better readability, maintainability, and testability, callbacks should be named. 
+
+Promises: Asynchronous by nature, and are an alternative to using callbacks. Used to handle asynchronous functions. Promises use resolve and reject. 
+
+Promise has four states: Pending, Fulfilled, Rejected, Settled.
+Pending: Async function is processing
+Fulfilled: 'then' - returns the resolved result
+Rejected: 'catch' - returns the error result
+Settled: 'finally' - outputs the result, resolved or rejected, to the user.
+
+Angular: frontend dev framework, written in TypeScript, building Single-Page Client side web apps (SP). 
+NodeJS : backend environment, written in C, C++, for building fast, scalable server-side networking apps.
+
+package.json file: holds metadata of a project, created using npm init
+
+npm install express
+npm update express
+npm uninstall express
+npm start
+
+MongoDB: create a MongoClient object, and a connection URL with the correct IP Address and the name of the database to be created
+
+setTimeout/clearTimeout - to schedule code execution after a defined amount of time in milliseconds
+
+setImmediate - to execute code immediately at the end of current event loop cycle
+
+REpresentational State Transfer (REST API)
+
+node is used to create apps that are non-cpu intensive
+
+nodemon package - automatically detects change in the application, and restarts the server with the new changes, should be made global for all applications to be able to use, or will have to implement individually in all apps.
+
+MongoDB is a document-based NoSQL DB, and stores data as JSON documents. 
+
+Express is a JS web framework that runs on top of NodeJS
+
+Angular is a JS UI framework, to create SP (Single Page) applications
+
+Node is a JS server-side platform, which is single threaded, fast, and scalable
+
+Backend: interaction with Database and Server
+Frontend: interaction with browser.
+
+Semantic Versioning (SEMVER):
+Major: incompatible API changes, may or may not be Legacy compatible
+Minor: backward compatible functionality with some added features
+Patch: backward compatible functionality with bug fixes.
+
+Modular Programming: building blocks, and separate loading from invocation
+
+Using child process consumes resources, but will not block the main server, thus maintaining asynchronous operations.
+
+
+Event Loop:
+
+1. Timers: executes callbacks scheduled by setTimeout() and setInterval()
+2. Pending callbacks: executes I/O callbacks deferred to next loop iteration.
+3. Idle, prepare: used internally.
+4. Poll: retrieve new I/O events, and execute I/O related callbacks
+5. 
+
+
+
+
+Mongoose is an object data modeling library for MongoDB and NodeJS. Mongoose processes data based on a schema, and avoids data violation since MongoDB is a NOSQL database, and has no schema. Mongoose provides the schema based solution to mongoDB in this case. MongoDB receives data in the form of JSON(JavaScript Object Notation) and saves it in the form of BSON(Binary JSON).
 
